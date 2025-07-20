@@ -70,7 +70,6 @@ function runSkillCanvas() {
                 this.vel.x *= -1;
                 }
                 
-                // Y bounds
                 if (this.pos.y - this.r < 0) {
                 this.pos.y = this.r;
                 this.vel.y *= -1;
