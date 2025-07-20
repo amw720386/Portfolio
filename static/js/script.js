@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           const link = document.createElement("a");
           link.href = repo.download_url;
-          link.target = "_blank";
+          link.download = "";  
           link.className = "inline-block mt-3 text-emerald-700 underline";
           link.textContent = "Download ZIP";
 
