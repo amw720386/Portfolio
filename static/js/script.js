@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // FETCH REPOS
   const repoContainer = document.getElementById("repos");
   if (repoContainer) {
-    fetch("http://48.217.68.14:8080/repos.json")
+    fetch("https://api.ahamedwajibu.com/repos.json")
       .then(res => res.json())
       .then(repos => {
         repos.forEach(repo => {
