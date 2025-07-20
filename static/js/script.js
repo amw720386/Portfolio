@@ -93,20 +93,11 @@ document.addEventListener("DOMContentLoaded", () => {
           desc.className = "text-sm text-gray-700 mt-1";
           desc.textContent = repo.description || "No description";
 
-          const downloadBtn = document.createElement("a");
-          downloadBtn.href = repo.download_url;
-          downloadBtn.className = "inline-block mt-3 text-emerald-700 underline cursor-pointer";
-          downloadBtn.textContent = "Download ZIP";
-    
-          downloadBtn.addEventListener("click", (e) => {
-            e.preventDefault();
-            const a = document.createElement("a");
-            a.href = repo.download_url;
-            a.download = ""; // force download behavior
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-          });
+          const link = document.createElement("a");
+          link.href = repo.download_url;
+          link.target = "_blank";
+          link.className = "inline-block mt-3 text-emerald-700 underline";
+          link.textContent = "Download ZIP";
 
           const view = document.createElement("a");
           view.href = `${repo.view_url}`;
