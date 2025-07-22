@@ -10,6 +10,10 @@ def main():
 def stuff():
     return render_template('stuff.html')
 
+@app.route("/puzzlegame")
+def subway():
+    return render_template("puzzlegame.html")
+
 @app.route("/RickNMorty")
 def redirect_view():
     return redirect("https://rick-and-mordle.vercel.app/", code=302)
