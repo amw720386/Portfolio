@@ -13,6 +13,7 @@ let dotCount = 0;
 let isMoving = false;
 let activeVisualTraps = [];
 let originalLevelData = [];
+let cancelMoveLoop = false;
 const activatedTraps = new Set();
 let pendingTrapTimeouts = [];
 
@@ -80,7 +81,7 @@ function draw() {
   }
 
   ctx.fillStyle = "#0f0";
-  ctx.fillRect(offsetX + playerPos.x * TILE_SIZE, offsetY + playerPos.y * TILE_SIZE, TILE_SIZE - 4, TILE_SIZE - 4);  
+  ctx.fillRect(offsetX + playerPos.x * TILE_SIZE, offsetY + playerPos.y * TILE_SIZE, TILE_SIZE - 4, TILE_SIZE - 4);
 }
 
 function triggerTrap(cx, cy, dx, dy) {
@@ -119,11 +120,17 @@ function triggerTrap(cx, cy, dx, dy) {
 function move(dx, dy) {
   if (isMoving) return;
   isMoving = true;
+  cancelMoveLoop = false;
 
   let x = playerPos.x;
   let y = playerPos.y;
 
   function step() {
+    if (cancelMoveLoop) {
+      isMoving = false;
+      return;
+    }
+
     const nextX = x + dx;
     const nextY = y + dy;
     const nextTile = tiles[nextY]?.[nextX];
@@ -182,6 +189,7 @@ function move(dx, dy) {
 
 function resetLevel() {
   isMoving = false;
+  cancelMoveLoop = true;
   activeVisualTraps = [];
   activatedTraps.clear();
   dotCount = 0;
@@ -215,6 +223,8 @@ document.addEventListener("keydown", (e) => {
     }
     return;
   }
+
+  if (e.key === "r") resetLevel();
 
   if (e.key === "ArrowUp" || e.key === "w") move(0, -1);
   else if (e.key === "ArrowDown" || e.key === "s") move(0, 1);
