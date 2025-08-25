@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sudoku — Ahamed Wajibu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/static/css/sudoku.css">
+  <meta name="description" content="Sudoku player: generator, notes, keypad, undo/redo, import/export. Classic board look (no yellow highlights), bold 3×3 lines." /> 
+</head>
+<body class="min-h-screen bg-zinc-50 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100">
+  <div class="max-w-6xl mx-auto p-4 md:p-6">
+    <header class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+      <h1 class="text-3xl font-bold tracking-tight">Sudoku</h1>
+      <div class="flex flex-wrap items-center gap-2">
+        <button id="newBtn" class="px-3 py-2 rounded-xl bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900">New</button>
+        <select id="difficulty" class="px-3 py-2 rounded-xl bg-zinc-200 dark:bg-zinc-800">
+          <option value="easy">Easy</option>
+          <option value="medium" selected>Medium</option>
+          <option value="hard">Hard</option>
+          <option value="expert">Expert</option>
+        </select>
+        <button id="notesBtn" class="px-3 py-2 rounded-xl bg-zinc-200 dark:bg-zinc-800">Notes: Off</button>
+        <button id="autoNotesBtn" class="px-3 py-2 rounded-xl bg-zinc-200 dark:bg-zinc-800" title="Fill candidates for all empty cells">Auto‑notes</button>
+        <button id="hintBtn" class="px-3 py-2 rounded-xl bg-zinc-200 dark:bg-zinc-800">Hint</button>
+        <button id="eraseBtn" class="px-3 py-2 rounded-xl bg-zinc-200 dark:bg-zinc-800">Erase</button>
+        <button id="undoBtn" class="px-3 py-2 rounded-xl bg-zinc-200 dark:bg-zinc-800" title="Undo (Ctrl+Z)">Undo</button>
+        <button id="redoBtn" class="px-3 py-2 rounded-xl bg-zinc-200 dark:bg-zinc-800" title="Redo (Ctrl+Y)">Redo</button>
+      </div>
+    </header>
+
+    <section class="grid grid-cols-1 lg:grid-cols-[max-content_auto] gap-10 items-start">
+      <div class="flex justify-center lg:justify-start">
+        <div id="board" class="sudoku-grid select-none border border-zinc-500 dark:border-zinc-600 rounded-2xl overflow-hidden"></div>
+      </div>
+
+      <aside class="w-full max-w-[280px] lg:sticky lg:top-6 flex flex-col gap-4 justify-center">
+        <div id="numpad" class="grid grid-cols-3 gap-2 self-end w-full max-w-[260px]">
+          <template id="numTemplate">
+            <button class="numKey py-6 rounded-xl bg-zinc-200 dark:bg-zinc-800 hover:opacity-90 text-2xl font-bold"></button>
+          </template>
+        </div>
+
+        <div class="flex flex-wrap gap-2 justify-center">
+          <button id="checkBtn" class="px-3 py-2 rounded-xl bg-zinc-200 dark:bg-zinc-800">Check</button>
+          <button id="resetNotesBtn" class="px-3 py-2 rounded-xl bg-zinc-200 dark:bg-zinc-800">Clear notes</button>
+          <button id="restartBtn" class="px-3 py-2 rounded-xl bg-zinc-200 dark:bg-zinc-800">Restart</button>
+        </div>
+
+        <div class="rounded-2xl border border-zinc-300 dark:border-zinc-700 p-3 justify-center">
+          <h2 class="font-semibold mb-2">Import / Export</h2>
+          <div class="flex flex-col gap-2">
+            <input id="importStr" type="text" placeholder="81-char puzzle (0 or . for empty)" class="px-3 py-2 rounded-xl bg-zinc-100 dark:bg-zinc-800 w-full" />
+            <div class="flex flex-wrap gap-2">
+              <button id="importBtn" class="px-3 py-2 rounded-xl bg-zinc-200 dark:bg-zinc-800">Import</button>
+              <button id="exportBtn" class="px-3 py-2 rounded-xl bg-zinc-200 dark:bg-zinc-800">Export</button>
+            </div>
+            <p class="text-xs text-zinc-500">Export encodes givens + your entries; shareable.</p>
+          </div>
+        </div>
+
+        <div class="text-sm text-zinc-600 dark:text-zinc-400 justify-center">
+          <div class="mt-2">
+            <label class="inline-flex items-center gap-2">
+              <input type="checkbox" id="checkConflicts" class="accent-zinc-900 dark:accent-zinc-100" checked>
+              <span>Live conflict check</span>
+            </label>
+          </div>
+          <p class="mt-2">Keyboard: 1–9 to fill, 0/Backspace erase, arrows move, N notes, Ctrl+Z/Y undo/redo.</p>
+        </div>
+      </aside>
+    </section>
+  </div>
+  <script src="/static/js/sudoku.js" defer></script>
+</body>
+</html>

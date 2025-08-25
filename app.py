@@ -14,6 +14,11 @@ def stuff():
 def subway():
     return render_template("puzzlegame.html")
 
+@app.route("/sudoku")
+def subway():
+    return render_template("sudoku.html")
+
+
 @app.route("/RickNMorty")
 def redirect_view():
     return redirect("https://rick-and-mordle.vercel.app/", code=302)
