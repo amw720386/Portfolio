@@ -11,11 +11,11 @@ def stuff():
     return render_template('stuff.html')
 
 @app.route("/puzzlegame")
-def subway():
+def puzzlegame():
     return render_template("puzzlegame.html")
 
 @app.route("/sudoku")
-def subway():
+def sudoku():
     return render_template("sudoku.html")
 
 
