@@ -289,6 +289,19 @@ function eraseCell(){
     const {r,c}=selected; const cell=state.cells[r][c]; if(cell.given) return;
     pushUndo(); redoStack.length=0; cell.value=0; cell.notes=[]; recalcConflicts(); renderAll();
 }
+
+function toggleNoteAtSelected(n){
+    const { r, c } = selected;
+    const cell = state.cells[r][c];
+    if (cell.given || cell.value) return;
+    pushUndo(); 
+    redoStack.length = 0;
+    const i = cell.notes.indexOf(n);
+    if (i === -1) cell.notes.push(n); else cell.notes.splice(i, 1);
+    renderAll();
+}
+
+
 function autoNotes(){
     const a=copyVals(state); pushUndo(); redoStack.length=0;
     for(let r=0;r<SIZE;r++) for(let c=0;c<SIZE;c++){
@@ -367,37 +380,51 @@ exportBtn.addEventListener('click', exportBoard);
 
 document.addEventListener('keydown', (e)=>{
     if (e.target.closest('input, textarea, [contenteditable]')) return;
-
-    const k=e.key;
-
-    if ((e.ctrlKey || e.metaKey) && k === 'z' && !e.shiftKey) {
-        e.preventDefault();
-        if(!undoStack.length) return;
-        const cur = JSON.stringify(state);
-        redoStack.push(cur);
-        const prev = undoStack.pop();
-        restore(prev);
-        return;
+  
+    const k = e.key;
+    const cmd = e.ctrlKey || e.metaKey; 
+  
+    if (cmd && k.toLowerCase() === 'z' && !e.shiftKey) {
+      e.preventDefault();
+      if(!undoStack.length) return;
+      const cur = JSON.stringify(state);
+      redoStack.push(cur);
+      const prev = undoStack.pop();
+      restore(prev);
+      return;
     }
-
-    if ((e.ctrlKey || e.metaKey) && (k === 'y' || (k === 'z' && e.shiftKey))) {
-        e.preventDefault();
-        if(!redoStack.length) return;
-        const cur = JSON.stringify(state);
-        undoStack.push(cur);
-        const next = redoStack.pop();
-        restore(next);
-        return;
+    if (cmd && (k.toLowerCase() === 'y' || (k.toLowerCase() === 'z' && e.shiftKey))) {
+      e.preventDefault();
+      if(!redoStack.length) return;
+      const cur = JSON.stringify(state);
+      undoStack.push(cur);
+      const next = redoStack.pop();
+      restore(next);
+      return;
     }
+  
+    if (cmd && k >= '1' && k <= '9') {
+      e.preventDefault();
+      toggleNoteAtSelected(+k);
+      return;
+    }
+  
+    if (k >= '1' && k <= '9') { placeNumber(+k); return; }
+    if (k === '0' || k === 'Backspace' || k === 'Delete') { eraseCell(); return; }
+  
+    // --- Wrap-around movement ---
+    if (k === 'ArrowUp')    { setSelected((selected.r - 1 + SIZE) % SIZE, selected.c); return; }
+    if (k === 'ArrowDown')  { setSelected((selected.r + 1) % SIZE,       selected.c); return; }
+    if (k === 'ArrowLeft')  { setSelected(selected.r, (selected.c - 1 + SIZE) % SIZE); return; }
+    if (k === 'ArrowRight') { setSelected(selected.r, (selected.c + 1) % SIZE);       return; }
+  
+    if (k === 'n' || k === 'N') { 
+      notesMode = !notesMode; 
+      updateNotesButtonUI(); 
+      return; 
+    }
+});  
 
-    if(k>='1' && k<='9'){ placeNumber(+k); return; }
-    if(k==='0' || k==='Backspace' || k==='Delete'){ eraseCell(); return; }
-    if(k==='ArrowUp'){ setSelected(Math.max(0,selected.r-1), selected.c); return; }
-    if(k==='ArrowDown'){ setSelected(Math.min(8,selected.r+1), selected.c); return; }
-    if(k==='ArrowLeft'){ setSelected(selected.r, Math.max(0,selected.c-1)); return; }
-    if(k==='ArrowRight'){ setSelected(selected.r, Math.min(8,selected.c+1)); return; }
-    if(k==='n' || k==='N'){ notesMode=!notesMode; updateNotesButtonUI(); return; }
-});
 
 function buildNumPad(){
     numpad.innerHTML='';
