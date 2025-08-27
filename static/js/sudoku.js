@@ -412,11 +412,10 @@ document.addEventListener('keydown', (e)=>{
     if (k >= '1' && k <= '9') { placeNumber(+k); return; }
     if (k === '0' || k === 'Backspace' || k === 'Delete') { eraseCell(); return; }
   
-    // --- Wrap-around movement ---
-    if (k === 'ArrowUp')    { setSelected((selected.r - 1 + SIZE) % SIZE, selected.c); return; }
-    if (k === 'ArrowDown')  { setSelected((selected.r + 1) % SIZE,       selected.c); return; }
-    if (k === 'ArrowLeft')  { setSelected(selected.r, (selected.c - 1 + SIZE) % SIZE); return; }
-    if (k === 'ArrowRight') { setSelected(selected.r, (selected.c + 1) % SIZE);       return; }
+    if (k === 'ArrowUp' || k === 'w')    { setSelected((selected.r - 1 + SIZE) % SIZE, selected.c); return; }
+    if (k === 'ArrowDown' || k === 's')  { setSelected((selected.r + 1) % SIZE,       selected.c); return; }
+    if (k === 'ArrowLeft' || k === 'a')  { setSelected(selected.r, (selected.c - 1 + SIZE) % SIZE); return; }
+    if (k === 'ArrowRight' || k === 'd') { setSelected(selected.r, (selected.c + 1) % SIZE);       return; }
   
     if (k === 'n' || k === 'N') { 
       notesMode = !notesMode; 
