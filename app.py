@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, send_file
 
 app = Flask(__name__)
 
@@ -6,22 +6,9 @@ app = Flask(__name__)
 def main():
     return render_template('index.html')
 
-@app.route("/Stuff")
-def stuff():
-    return render_template('stuff.html')
-
-@app.route("/puzzlegame")
-def puzzlegame():
-    return render_template("puzzlegame.html")
-
-@app.route("/sudoku")
-def sudoku():
-    return render_template("sudoku.html")
-
-
-@app.route("/RickNMorty")
-def redirect_view():
-    return redirect("https://rick-and-mordle.vercel.app/", code=302)
+@app.route("/resume")
+def resume():
+    return send_file('static/assets/Resume.pdf', mimetype='application/pdf')
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8000, debug=True)
