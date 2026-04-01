@@ -1,1 +1,6 @@
-venv
+venv/
+.portfolio-venv/
+__pycache__/
+*.py[cod]
+node_modules/
+.env

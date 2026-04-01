@@ -1,0 +1,113 @@
+/* Shared README rendered-content styling (used in compartment and readme-sheet) */
+
+.readme-content img,
+.readme-content video {
+  max-width: 100%;
+  height: auto;
+  border-radius: calc(var(--radius-lg) - 2px);
+  border: 2px solid var(--ink-900);
+}
+
+.readme-content video {
+  display: block;
+  margin: 0.85rem 0;
+  background: var(--ink-950);
+}
+
+.readme-content iframe {
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: auto;
+  min-height: 12rem;
+  border: 3px solid var(--ink-900);
+  border-radius: var(--radius-lg);
+  margin: 0.85rem 0;
+}
+
+.readme-content pre {
+  overflow: auto;
+  padding: 0.65rem 0.75rem;
+  border-radius: var(--radius-lg);
+  background: var(--cream-100);
+  border: 2px solid var(--ink-900);
+  font-size: 0.82em;
+}
+
+.readme-content h1,
+.readme-content h2,
+.readme-content h3 {
+  font-family: var(--font-display);
+  margin: 1.1em 0 0.45em;
+  line-height: 1.2;
+}
+
+.readme-content p {
+  margin: 0 0 0.75em;
+}
+
+.readme-content {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.readme-content a {
+  word-break: break-word;
+}
+
+.readme-content code {
+  font-size: 0.88em;
+  padding: 0.12em 0.35em;
+  border-radius: 0.35rem;
+  background: rgba(247, 236, 217, 0.95);
+  border: 1px solid rgba(30, 24, 18, 0.2);
+  word-break: break-all;
+}
+
+.readme-content pre code {
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: inherit;
+  word-break: normal;
+}
+
+.readme-content blockquote {
+  margin: 0.75em 0;
+  padding: 0.45em 0 0.45em 0.85em;
+  border-left: 4px solid var(--honey-400);
+  color: var(--brown-700);
+}
+
+.readme-content ul,
+.readme-content ol {
+  margin: 0.35em 0 0.75em;
+  padding-left: 1.35em;
+}
+
+.readme-content li {
+  margin: 0.25em 0;
+}
+
+.readme-content table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-collapse: collapse;
+  font-size: 0.92em;
+}
+
+.readme-content th,
+.readme-content td {
+  border: 2px solid var(--ink-900);
+  padding: 0.45em 0.55em;
+  text-align: left;
+}
+
+.readme-content hr {
+  margin: 1.25em 0;
+  border: none;
+  border-top: 2px solid rgba(30, 24, 18, 0.15);
+}

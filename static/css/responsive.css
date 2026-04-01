@@ -1,0 +1,227 @@
+/* Reduced motion and responsive layout overrides */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .compartment.is-open .compartment__flood,
+  .compartment.is-closing .compartment__flood {
+    clip-path: none !important;
+    transition: none !important;
+  }
+
+  .tile:hover,
+  button.tile:hover,
+  a.tile:hover {
+    transform: none;
+  }
+
+  .tile--live-commit:hover,
+  .tile--live-commit:active {
+    transform: none;
+  }
+}
+
+/* Desktop: fixed box, no outer scroll */
+@media (min-width: 901px) {
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .viewport {
+    height: 100dvh;
+    max-height: 100dvh;
+    overflow: hidden;
+  }
+}
+
+/* Mobile / narrow: scroll the bento stack */
+@media (max-width: 900px) {
+  body:not(.compartment-open) {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  body.compartment-open .compartment {
+    position: fixed;
+    z-index: 300;
+    top: max(0.45rem, env(safe-area-inset-top, 0px));
+    right: max(0.45rem, env(safe-area-inset-right, 0px));
+    bottom: max(0.45rem, env(safe-area-inset-bottom, 0px));
+    left: max(0.45rem, env(safe-area-inset-left, 0px));
+  }
+
+  body.compartment-open .compartment__panel {
+    inset: clamp(0.35rem, 1vw, 0.5rem);
+  }
+
+  .compartment__body {
+    padding-bottom: max(1rem, calc(0.85rem + env(safe-area-inset-bottom, 0px)));
+  }
+
+  .viewport {
+    min-height: 100dvh;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .bento {
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+    gap: 0.65rem;
+  }
+
+  .tile--hero,
+  .tile--intern,
+  .tile--reel,
+  .tile--interactive,
+  .tile--repos,
+  .tile--about,
+  .tile--contact,
+  .tile--resume,
+  .tile--github,
+  .tile--open-work,
+  .tile--cat,
+  .tile--themes,
+  .tile--live-commit {
+    grid-column: auto;
+    grid-row: auto;
+    min-height: 5.5rem;
+  }
+
+  .bento-cluster--themes-live {
+    grid-column: auto;
+    grid-row: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    width: 100%;
+    order: 11;
+    min-height: 0;
+  }
+
+  .tile--hero {
+    order: 0;
+  }
+
+  .tile--intern {
+    order: 1;
+  }
+
+  .tile--reel {
+    order: 2;
+  }
+
+  .tile--interactive {
+    order: 3;
+  }
+
+  .tile--repos {
+    order: 4;
+  }
+
+  .tile--about {
+    order: 5;
+  }
+
+  .tile--contact {
+    order: 6;
+  }
+
+  .tile--resume,
+  .tile--github {
+    min-height: 4.75rem;
+  }
+
+  .tile--resume {
+    order: 7;
+  }
+
+  .tile--github {
+    order: 8;
+  }
+
+  .tile--open-work {
+    order: 9;
+    min-height: 4.25rem;
+  }
+
+  .tile--cat {
+    order: 10;
+    min-height: 4.75rem;
+  }
+
+  .tile__ascii-static {
+    font-size: clamp(0.42rem, 2.35vw, 0.56rem);
+    padding-left: 0.45rem;
+  }
+
+  .tile--themes {
+    min-height: 5rem;
+    order: 0;
+  }
+
+  .tile--live-commit {
+    min-height: 5.5rem;
+    order: 1;
+  }
+
+  .tile--mini {
+    min-height: 4.5rem;
+  }
+
+  .resume-embed {
+    min-height: 65dvh;
+  }
+
+  .compartment__readme-html {
+    padding: clamp(0.65rem, 2.5vw, 0.9rem);
+    font-size: clamp(0.9rem, 2.8vw, 0.98rem);
+    line-height: 1.6;
+  }
+
+  .readme-content h1 {
+    font-size: clamp(1.2rem, 5vw, 1.55rem);
+    margin-top: 0.85em;
+  }
+
+  .readme-content h2 {
+    font-size: clamp(1.08rem, 4.2vw, 1.35rem);
+  }
+
+  .readme-content h3 {
+    font-size: clamp(1rem, 3.5vw, 1.15rem);
+  }
+
+  .readme-content pre {
+    font-size: clamp(0.72rem, 2.8vw, 0.82rem);
+    padding: 0.55rem 0.6rem;
+    max-width: 100%;
+  }
+
+  .readme-sheet__content.readme-content {
+    padding: max(0.85rem, 2.5vw);
+    font-size: clamp(0.9rem, 2.8vw, 0.98rem);
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 520px) {
+  .compartment__links {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .bubble-btn {
+    justify-content: center;
+  }
+}

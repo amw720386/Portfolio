@@ -1,21 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='logo.svg') }}">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ahamed Mohamed Wajibu</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <meta name="description" content="Hi I'm Ahamed! I build things, mostly break things, and sometimes deploy things too." /> 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body class="bg-background text-text overflow-x-hidden">
-  <div id="cursor-glow"></div>
+{% extends "base.html" %}
 
-  {% include '/partials/navbar.html' %}
-  {% include '/partials/home/hero.html' %} 
+{% block body %}
+  {% include "partials/teaser.html" %}
 
-  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-</body>
-</html>
+  <div class="viewport" id="bento-root">
+    <div class="bento-stage" id="bento-stage">
+      {% include "partials/bento.html" %}
+      {% include "partials/compartment.html" %}
+    </div>
+
+    <footer class="viewport__foot">
+      <p>© <span id="year"></span> · Ahamed Mohamed Wajibu</p>
+    </footer>
+  </div>
+
+  {% include "partials/ascii-modal.html" %}
+  {% include "partials/readme-sheet.html" %}
+{% endblock %}

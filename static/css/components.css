@@ -1,0 +1,38 @@
+/* Bubble buttons */
+
+.bubble-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  border: 3px solid var(--ink-900);
+  font-family: var(--font-ui);
+  font-weight: 800;
+  font-size: 0.88rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s var(--ease-bounce), box-shadow 0.2s;
+  box-shadow: 0 5px 0 var(--ink-900);
+}
+
+.bubble-btn--primary {
+  background: var(--honey-400);
+  color: var(--ink-950);
+}
+
+.bubble-btn--ghost {
+  background: var(--cream-50);
+  color: var(--ink-900);
+}
+
+.bubble-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 0 var(--ink-900);
+}
+
+.bubble-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 0 var(--ink-900);
+}

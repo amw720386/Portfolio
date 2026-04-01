@@ -1,0 +1,90 @@
+<div class="compartment" id="compartment" hidden aria-hidden="true">
+  <div class="compartment__flood" id="compartment-flood" aria-hidden="true"></div>
+  <div class="compartment__panel" role="dialog" aria-modal="true" id="compartment-panel">
+    <div class="compartment__chrome">
+      <button type="button" class="compartment__close bubble-btn bubble-btn--ghost" id="compartment-close" aria-label="Close panel">Back</button>
+    </div>
+    <div class="compartment__body" id="compartment-body">
+      <article class="compartment__sheet" data-sheet="internflow" hidden>
+        <header class="compartment__sheet-head">
+          <h2 class="compartment__title" id="compartment-title-internflow">InternFlow</h2>
+          <p class="compartment__meta">Python · FastAPI · outreach</p>
+          <div class="compartment__links compartment__links--inline">
+            <a class="bubble-btn bubble-btn--primary" href="https://github.com/amw720386/InternFlow" rel="noopener noreferrer" target="_blank">Repository</a>
+          </div>
+        </header>
+        <div class="compartment__readme-html readme-content" id="readme-full-internflow" data-readme-body="InternFlow" aria-busy="true">
+          <p class="compartment__loading">Loading README…</p>
+        </div>
+      </article>
+
+      <article class="compartment__sheet" data-sheet="reelreddit" hidden>
+        <header class="compartment__sheet-head">
+          <h2 class="compartment__title" id="compartment-title-reelreddit">ReelReddit</h2>
+          <p class="compartment__meta">Flask · Azure · video pipeline</p>
+          <div class="compartment__links compartment__links--inline">
+            <a class="bubble-btn bubble-btn--primary" href="https://github.com/amw720386/ReelReddit" rel="noopener noreferrer" target="_blank">Repository</a>
+          </div>
+        </header>
+        <div class="compartment__readme-html readme-content" id="readme-full-reelreddit" data-readme-body="ReelReddit" aria-busy="true">
+          <p class="compartment__loading">Loading README…</p>
+        </div>
+      </article>
+
+      <article class="compartment__sheet" data-sheet="repos" hidden>
+        <h2 class="compartment__title" id="compartment-title-repos">More repos</h2>
+        <p class="compartment__copy">Newest first. InternFlow and ReelReddit are featured on the grid. Forks and archived repos stay off the list.</p>
+        <p class="repo-status" id="repo-status" aria-live="polite"></p>
+        <ul class="repo-list" id="project-grid"></ul>
+      </article>
+
+      <article class="compartment__sheet" data-sheet="about" hidden>
+        <h2 class="compartment__title" id="compartment-title-about">About</h2>
+        <div class="open-to-work" role="status">
+          <span class="open-to-work__badge">Open to work</span>
+          <p class="open-to-work__text">Open to full-time or contract roles in software engineering. Mississauga, ON · happy to discuss remote-friendly teams.</p>
+        </div>
+        <p class="compartment__copy"><strong>Location:</strong> Mississauga, Ontario.</p>
+        <h3 class="compartment__sub">Experience</h3>
+        <p class="compartment__copy"><strong>Mitsubishi Heavy Industries:</strong> Syspro automation in C#; Entity Framework refactors; internal RAG on technical documentation; dashboards for large document volumes.</p>
+        <p class="compartment__copy"><strong>D2DAnalytics:</strong> OAuth 2.0 / OpenID Connect with Microsoft Entra ID; backends that archive and index X (Twitter) API data past the platform window.</p>
+        <h3 class="compartment__sub">Side projects</h3>
+        <p class="compartment__copy"><strong>ReelReddit</strong> — Reddit to short-form video, Azure TTS, OpenCV/FFmpeg, YouTube. <strong>InternFlow</strong> — PDL plus OpenAI outreach with scoring.</p>
+        <h3 class="compartment__sub">Skills</h3>
+        <ul class="compartment__skills">
+          <li><strong>Languages:</strong> Python, C#, JavaScript, TypeScript</li>
+          <li><strong>Web &amp; APIs:</strong> HTML/CSS, React, Flask, FastAPI, Node.js, ASP.NET Core, REST</li>
+          <li><strong>Data:</strong> SQL Server, PostgreSQL, MongoDB, Pandas, Entity Framework</li>
+          <li><strong>Elsewhere:</strong> Azure, Docker, Linux, Git, Selenium, OpenCV, Agile/Scrum, unit testing</li>
+        </ul>
+      </article>
+
+      <article class="compartment__sheet compartment__sheet--contact" data-sheet="contact" hidden>
+        <h2 class="compartment__title" id="compartment-title-contact">Contact</h2>
+        <p class="compartment__lede">Email or GitHub—pick what you prefer.</p>
+        <ul class="compartment__contacts">
+          <li><a class="contact-link" href="mailto:ahamedw2006@gmail.com">ahamedw2006@gmail.com</a></li>
+          <li><a class="contact-link" href="https://www.linkedin.com/in/ahamed-wajibu" rel="noopener noreferrer" target="_blank">LinkedIn</a></li>
+          <li><a class="contact-link" href="https://github.com/amw720386" rel="noopener noreferrer" target="_blank">GitHub</a></li>
+          <li><a class="contact-link" href="https://ahamedwajibu.com" rel="noopener noreferrer">ahamedwajibu.com</a></li>
+          <li><a class="contact-link" href="https://interactive.ahamedwajibu.com" rel="noopener noreferrer" target="_blank">Interactive portfolio (new tab)</a></li>
+        </ul>
+      </article>
+
+      <article class="compartment__sheet compartment__sheet--resume" data-sheet="resume" hidden>
+        <h2 class="compartment__title" id="compartment-title-resume">Résumé</h2>
+        <div class="resume-embed-wrap">
+          <iframe class="resume-embed" data-resume-src="{{ url_for('resume') }}" src="about:blank" title="Ahamed Mohamed Wajibu résumé PDF"></iframe>
+        </div>
+        <p class="resume-embed-foot">
+          <a href="{{ url_for('resume') }}" rel="noopener" target="_blank">Open PDF in a new tab</a> if the viewer above is finicky.
+        </p>
+      </article>
+
+      <article class="compartment__sheet compartment__sheet--interactive" data-sheet="interactive" hidden>
+        <h2 class="compartment__interactive-msg" id="compartment-title-interactive">Taking you to the interactive build…</h2>
+        <p class="compartment__copy compartment__copy--muted">Hang tight—this page will redirect in a moment.</p>
+      </article>
+    </div>
+  </div>
+</div>

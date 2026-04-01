@@ -1,0 +1,399 @@
+/* Compartment overlay, panel, sheets, and all sheet content */
+
+.compartment {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.compartment:not([hidden]) {
+  pointer-events: auto;
+}
+
+.compartment__flood {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(100% 90% at 50% 0%, var(--cream-100) 0%, var(--cream-200) 55%, var(--honey-400) 120%);
+  clip-path: circle(0% at var(--ox, 50%) var(--oy, 50%));
+  will-change: clip-path;
+}
+
+.compartment.is-open .compartment__flood {
+  clip-path: circle(160% at var(--ox, 50%) var(--oy, 50%));
+  transition: clip-path 0.65s var(--ease-out);
+}
+
+.compartment.is-closing .compartment__flood {
+  clip-path: circle(0% at var(--ox, 50%) var(--oy, 50%));
+  transition: clip-path 0.5s var(--ease-out);
+}
+
+.compartment__panel {
+  position: absolute;
+  inset: clamp(0.4rem, 1.2vw, 0.65rem);
+  display: flex;
+  flex-direction: column;
+  border: 3px solid var(--ink-900);
+  border-radius: var(--radius-xl);
+  background: var(--cream-50);
+  box-shadow: var(--bubble-shadow);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(12px) scale(0.98);
+  transition: opacity 0.35s var(--ease-out) 0.12s, transform 0.45s var(--ease-bounce) 0.1s;
+}
+
+.compartment.is-open .compartment__panel {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.compartment.is-closing .compartment__panel {
+  opacity: 0;
+  transform: translateY(10px) scale(0.99);
+  transition: opacity 0.2s ease, transform 0.25s ease;
+}
+
+.compartment__chrome {
+  flex-shrink: 0;
+  padding: clamp(0.45rem, 1.2vw, 0.75rem) clamp(0.65rem, 2vw, 1rem)
+    max(0.55rem, calc(0.35rem + 6px));
+  border-bottom: 2px solid rgba(30, 24, 18, 0.1);
+  background: linear-gradient(180deg, rgba(255, 251, 245, 0.98) 0%, transparent 100%);
+}
+
+.compartment__chrome .bubble-btn {
+  margin-top: -0.2rem;
+  margin-bottom: 0.35rem;
+}
+
+.compartment__body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(1rem, 3.5vw, 1.85rem) clamp(1.15rem, 3.5vw, 2rem);
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  touch-action: pan-y;
+}
+
+.compartment__body > .compartment__sheet--resume {
+  flex: 1;
+  min-height: 0;
+}
+
+.compartment__sheet[hidden] {
+  display: none !important;
+}
+
+.compartment__sheet {
+  max-width: 52rem;
+  margin: 0 auto;
+}
+
+.compartment__sheet--resume {
+  max-width: none;
+  margin: 0;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.compartment__sheet--resume .compartment__title {
+  flex-shrink: 0;
+  margin-bottom: 0.25rem;
+}
+
+.resume-embed-wrap {
+  flex: 1;
+  min-height: 0;
+  border: 3px solid var(--ink-900);
+  border-radius: var(--radius-lg);
+  overflow: auto;
+  background: var(--cream-100);
+  -webkit-overflow-scrolling: touch;
+}
+
+.resume-embed {
+  display: block;
+  width: 100%;
+  min-height: min(72dvh, 820px);
+  height: 100%;
+  border: none;
+  background: var(--cream-50);
+}
+
+.resume-embed-foot {
+  margin: 0;
+  flex-shrink: 0;
+  font-size: 0.82rem;
+  color: var(--brown-700);
+}
+
+.compartment__sheet--interactive {
+  text-align: center;
+  padding: clamp(1.5rem, 5vw, 3rem) 1rem;
+}
+
+.compartment__interactive-msg {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  font-weight: 700;
+  color: var(--ink-950);
+}
+
+.compartment__copy--muted {
+  color: var(--brown-700);
+  margin-bottom: 0;
+}
+
+.open-to-work {
+  margin: 0 0 1.15rem;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-lg);
+  border: 3px dashed var(--honey-500);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, var(--cream-100) 100%);
+}
+
+.open-to-work__badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  background: var(--honey-400);
+  border: 2px solid var(--ink-900);
+  color: var(--ink-950);
+  margin-bottom: 0.45rem;
+}
+
+.open-to-work__text {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--brown-800);
+  line-height: 1.45;
+}
+
+/* Sheet head and metadata */
+
+.compartment__sheet-head {
+  margin-bottom: clamp(0.65rem, 2vw, 1rem);
+}
+
+.compartment__sheet-head .compartment__title {
+  margin-bottom: 0.2rem;
+}
+
+.compartment__sheet-head .compartment__meta {
+  margin-bottom: 0.65rem;
+}
+
+.compartment__links--inline {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.compartment__loading {
+  margin: 0;
+  color: var(--brown-700);
+  font-weight: 700;
+}
+
+.compartment__readme-html {
+  padding: clamp(0.85rem, 2vw, 1.15rem);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 251, 245, 0.88);
+  border: 3px solid var(--ink-900);
+  font-size: clamp(0.88rem, 0.82rem + 0.25vw, 0.95rem);
+  line-height: 1.55;
+}
+
+/* Compartment typography */
+
+.compartment__title {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  color: var(--ink-950);
+}
+
+.compartment__meta {
+  margin: 0 0 1rem;
+  font-weight: 800;
+  color: var(--brown-700);
+  font-size: 0.9rem;
+}
+
+.compartment__copy,
+.compartment__lede,
+.compartment__readme {
+  margin: 0 0 0.85rem;
+  color: var(--brown-800);
+}
+
+.compartment__readme {
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 251, 245, 0.75);
+  border: 2px solid var(--ink-900);
+  font-size: 0.92rem;
+}
+
+.compartment__sub {
+  margin: 1.25rem 0 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--ink-950);
+}
+
+.compartment__skills {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--brown-800);
+}
+
+.compartment__skills li {
+  margin-bottom: 0.35rem;
+}
+
+.compartment__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+/* Contact sheet */
+
+.compartment__sheet--contact .compartment__title {
+  margin-bottom: 0.35rem;
+}
+
+.compartment__sheet--contact .compartment__lede {
+  margin-bottom: 1.15rem;
+  font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+  max-width: 40ch;
+}
+
+.compartment__contacts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-weight: 700;
+}
+
+.contact-link {
+  display: block;
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius-lg);
+  border: 3px solid var(--ink-900);
+  background: var(--cream-50);
+  box-shadow: 0 4px 0 rgba(30, 24, 18, 0.1);
+  text-decoration: none;
+  color: var(--brown-800);
+  font-size: clamp(0.88rem, 0.84rem + 0.2vw, 0.98rem);
+  line-height: 1.35;
+  transition: transform 0.2s var(--ease-bounce), box-shadow 0.2s;
+}
+
+.contact-link:hover {
+  transform: translateY(-2px);
+  color: var(--ink-950);
+}
+
+@media (min-width: 520px) {
+  .compartment__contacts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+    gap: 0.65rem;
+  }
+}
+
+/* Repo cards */
+
+.repo-status {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--honey-500);
+  min-height: 1.25em;
+}
+
+.repo-list {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.repo-card {
+  border-radius: var(--radius-lg);
+  border: 3px solid var(--ink-900);
+  background: var(--cream-50);
+  box-shadow: 0 5px 0 rgba(30, 24, 18, 0.12);
+  transition: transform 0.2s var(--ease-bounce);
+}
+
+.repo-card:hover {
+  transform: translateY(-2px);
+}
+
+.repo-card__link {
+  display: block;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.repo-card__top {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.repo-card__name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+}
+
+.repo-card__badge {
+  font-size: 0.65rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.15rem 0.4rem;
+  border-radius: 999px;
+  background: var(--cream-200);
+  border: 2px solid var(--ink-900);
+}
+
+.repo-card__desc {
+  margin: 0.35rem 0 0;
+  font-size: 0.85rem;
+  color: var(--brown-800);
+  line-height: 1.45;
+}
+
+.repo-card__meta {
+  margin-top: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--honey-500);
+}

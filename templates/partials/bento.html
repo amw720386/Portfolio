@@ -1,0 +1,106 @@
+<main class="bento" id="main" aria-label="Portfolio bento">
+  <section class="tile tile--hero" aria-label="Introduction">
+    <h1 class="tile__greeting">Hi, I'm Ahamed.</h1>
+    <p class="tile__tagline">I build software end to end.</p>
+    <p class="tile__lede">Full-stack / systems-oriented framing—clear APIs, sensible data models, interfaces that stay out of the way.</p>
+    <ul class="tile__chips" aria-label="Tools and stacks">
+      <li>Python</li>
+      <li>FastAPI</li>
+      <li>C#</li>
+      <li>Azure</li>
+      <li>React</li>
+      <li>PostgreSQL</li>
+    </ul>
+    <div class="tile__actions">
+      <button type="button" class="bubble-btn bubble-btn--primary" data-open="internflow" data-origin="hero-cta">Featured work</button>
+    </div>
+    <div class="tile__meta">
+      <a href="mailto:ahamedw2006@gmail.com">ahamedw2006@gmail.com</a>
+      <span class="dot" aria-hidden="true">·</span>
+      <a href="https://ahamedwajibu.com" rel="noopener noreferrer">ahamedwajibu.com</a>
+    </div>
+  </section>
+
+  <button type="button" class="tile tile--accent tile--intern" data-open="internflow" aria-label="Open InternFlow details">
+    <span class="tile__tag">Python · FastAPI · outreach</span>
+    <h2 class="tile__heading">InternFlow</h2>
+    <p class="tile__blurb">Recruiter discovery and ranked outreach.</p>
+    <span class="tile__hint">Tap to open</span>
+  </button>
+
+  <button type="button" class="tile tile--accent tile--reel" data-open="reelreddit" aria-label="Open ReelReddit details">
+    <span class="tile__tag">Flask · Azure · video</span>
+    <h2 class="tile__heading">ReelReddit</h2>
+    <p class="tile__blurb">Reddit threads → shorts → YouTube.</p>
+    <span class="tile__hint">Tap to open</span>
+  </button>
+
+  <button type="button" class="tile tile--interactive" data-open="interactive" aria-label="Open interactive portfolio">
+    <span class="tile__tag">Experiments</span>
+    <h2 class="tile__heading">Interactive portfolio</h2>
+    <p class="tile__blurb">A different build—playful UI, same person.</p>
+    <span class="tile__hint">Go</span>
+  </button>
+
+  <button type="button" class="tile tile--repos" data-open="repos" aria-label="Open more repositories">
+    <h2 class="tile__heading">More repos</h2>
+    <p class="tile__blurb">Newest first—README previews when we can pull them.</p>
+    <span class="tile__hint">Explore</span>
+  </button>
+
+  <button type="button" class="tile tile--about" data-open="about" aria-label="Open about">
+    <h2 class="tile__heading">About</h2>
+    <p class="tile__blurb">Mississauga, ON · ship maintainable systems.</p>
+    <span class="tile__hint">Bio</span>
+  </button>
+
+  <button type="button" class="tile tile--contact" data-open="contact" aria-label="Open contact">
+    <h2 class="tile__heading">Say hi</h2>
+    <p class="tile__blurb">Email or GitHub—let's talk.</p>
+    <span class="tile__hint">Contact</span>
+  </button>
+
+  <button type="button" class="tile tile--mini tile--resume" data-open="resume" aria-label="Resume">
+    <span class="tile__resume-text">Resume</span>
+  </button>
+
+  <a class="tile tile--mini tile--github" href="https://github.com/amw720386" rel="noopener noreferrer" target="_blank" aria-label="GitHub profile">
+    <span class="tile__mini-label">Source of truth</span>
+    <span class="tile__mini-hint">GitHub</span>
+  </a>
+
+  <div class="tile tile--open-work" role="note" aria-label="Open to work">
+    <span class="tile--open-work__badge">Open to work</span>
+    <p class="tile--open-work__text">Software roles · Mississauga, ON · remote-friendly teams welcome.</p>
+  </div>
+
+  <button type="button" class="tile tile--cat" id="cat-boop-tile" aria-label="Random ASCII art (library or offline fallbacks)">
+    <pre class="tile__ascii-static" id="tile-ascii-preview" aria-hidden="true"></pre>
+  </button>
+
+  <div class="bento-cluster bento-cluster--themes-live">
+    <div class="tile tile--themes" aria-label="Site color theme">
+      <span class="tile--themes__label">Palette</span>
+      <div class="theme-dots" role="group" aria-label="Pick a theme">
+        <button type="button" class="theme-dot" data-theme="default" aria-pressed="true" aria-label="Warm cream and brown" title="Warm cream"></button>
+        <button type="button" class="theme-dot" data-theme="green" aria-pressed="false" aria-label="Green and white" title="Sage"></button>
+        <button type="button" class="theme-dot" data-theme="blue" aria-pressed="false" aria-label="Blue and white" title="Sky"></button>
+        <button type="button" class="theme-dot" data-theme="mono" aria-pressed="false" aria-label="Black and white" title="Mono"></button>
+      </div>
+    </div>
+    <a
+      class="tile tile--live-commit"
+      id="live-commit-tile"
+      href="https://github.com/amw720386?tab=repositories"
+      rel="noopener noreferrer"
+      target="_blank"
+      aria-live="polite"
+      aria-label="Latest commit on GitHub. Loading."
+    >
+      <span class="tile--live-commit__kicker">Live now</span>
+      <span class="tile--live-commit__repo" id="live-commit-repo"></span>
+      <p class="tile--live-commit__msg" id="live-commit-msg">Fetching latest commit…</p>
+      <span class="tile--live-commit__meta" id="live-commit-meta"></span>
+    </a>
+  </div>
+</main>
