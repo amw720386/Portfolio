@@ -24,7 +24,7 @@
 .ascii-modal__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(14, 18, 22, 0.42);
+  background: color-mix(in srgb, var(--ink-950) 42%, transparent);
   opacity: 0;
   transition: opacity 0.22s var(--ease-out);
   cursor: var(--ascii-modal-cursor, pointer);
@@ -204,7 +204,7 @@
 .readme-sheet__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(18, 14, 11, 0.45);
+  background: color-mix(in srgb, var(--ink-950) 45%, transparent);
   opacity: 0;
   transition: opacity 0.3s var(--ease-out);
 }
