@@ -24,9 +24,11 @@
 .ascii-modal__backdrop {
   position: absolute;
   inset: 0;
-  background: color-mix(in srgb, var(--ink-950) 42%, transparent);
+  background: color-mix(in srgb, var(--ink-950) 55%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   opacity: 0;
-  transition: opacity 0.22s var(--ease-out);
+  transition: opacity 0.28s var(--ease-out);
   cursor: var(--ascii-modal-cursor, pointer);
   -webkit-tap-highlight-color: transparent;
 }
@@ -40,15 +42,18 @@
   z-index: 1;
   width: min(100%, 24rem);
   max-width: calc(100vw - 1.25rem);
-  border: 3px solid var(--ink-900);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-xl);
-  background: var(--cream-50);
-  box-shadow: var(--bubble-shadow-hover);
+  background: color-mix(in srgb, var(--cream-50) 82%, transparent);
+  backdrop-filter: blur(22px) saturate(1.35);
+  -webkit-backdrop-filter: blur(22px) saturate(1.35);
+  box-shadow: var(--glass-shadow-hover);
+  overflow: hidden;
   opacity: 0;
-  transform: scale(0.88) translateY(12px);
+  transform: scale(0.92) translateY(10px);
   transition:
-    opacity 0.28s var(--ease-out),
-    transform 0.4s var(--ease-bounce),
+    opacity 0.32s var(--ease-out),
+    transform 0.45s var(--ease-spring),
     filter 0.35s ease;
   transform-style: preserve-3d;
 }
@@ -204,7 +209,9 @@
 .readme-sheet__backdrop {
   position: absolute;
   inset: 0;
-  background: color-mix(in srgb, var(--ink-950) 45%, transparent);
+  background: color-mix(in srgb, var(--ink-950) 50%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   opacity: 0;
   transition: opacity 0.3s var(--ease-out);
 }
@@ -218,12 +225,16 @@
   width: min(720px, 100%);
   max-height: min(88dvh, 100%);
   margin: 0;
-  background: var(--cream-50);
-  border: 3px solid var(--ink-900);
+  background: color-mix(in srgb, var(--cream-50) 88%, transparent);
+  backdrop-filter: blur(24px) saturate(1.35);
+  -webkit-backdrop-filter: blur(24px) saturate(1.35);
+  border: 1px solid var(--glass-border);
+  border-bottom: none;
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-  box-shadow: var(--bubble-shadow-hover);
+  box-shadow: var(--glass-shadow-hover);
+  overflow: hidden;
   transform: translateY(100%);
-  transition: transform 0.45s var(--ease-bounce);
+  transition: transform 0.5s var(--ease-spring);
   display: flex;
   flex-direction: column;
 }
@@ -238,7 +249,7 @@
   justify-content: space-between;
   gap: 0.75rem;
   padding: 0.75rem 1rem;
-  border-bottom: 3px solid var(--ink-900);
+  border-bottom: 1px solid var(--glass-border);
   flex-shrink: 0;
 }
 
@@ -246,17 +257,26 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .readme-sheet__close {
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 999px;
-  border: 3px solid var(--ink-900);
-  background: var(--cream-200);
+  border: 1px solid var(--glass-border);
+  background: color-mix(in srgb, var(--cream-200) 65%, transparent);
+  backdrop-filter: blur(8px);
   font-size: 1.35rem;
   line-height: 1;
   cursor: pointer;
+  transition: transform 0.3s var(--ease-spring), background 0.25s var(--ease-out);
+}
+
+.readme-sheet__close:hover {
+  transform: scale(1.06);
+  background: color-mix(in srgb, var(--cream-300) 70%, transparent);
 }
 
 .readme-sheet__content {
@@ -273,6 +293,6 @@
   overflow: auto;
   padding: 0.75rem;
   border-radius: var(--radius-lg);
-  background: var(--cream-100);
-  border: 2px solid var(--ink-900);
+  background: color-mix(in srgb, var(--cream-100) 70%, transparent);
+  border: 1px solid var(--glass-border);
 }

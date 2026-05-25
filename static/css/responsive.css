@@ -25,6 +25,14 @@
   .tile--live-commit:active {
     transform: none;
   }
+
+  button.tile:hover,
+  a.tile:hover,
+  .tile--live-commit:hover {
+    --tilt-x: 0deg;
+    --tilt-y: 0deg;
+  }
+
 }
 
 /* Desktop: fixed box, no outer scroll */

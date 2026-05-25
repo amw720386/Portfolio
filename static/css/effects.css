@@ -1,0 +1,110 @@
+/* Ambient background, cursor spotlight, glass gloss overlays */
+
+body {
+  position: relative;
+  isolation: isolate;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -2;
+}
+
+/* Slow drifting mesh orbs */
+body::before {
+  background:
+    radial-gradient(
+      ellipse 55% 45% at 12% 18%,
+      color-mix(in srgb, var(--honey-400) 38%, transparent) 0%,
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse 50% 40% at 88% 12%,
+      color-mix(in srgb, var(--cream-300) 55%, transparent) 0%,
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 72% 88%,
+      color-mix(in srgb, var(--honey-500) 22%, transparent) 0%,
+      transparent 65%
+    );
+  animation: ambient-drift 22s ease-in-out infinite alternate;
+}
+
+/* Cursor-following spotlight */
+body::after {
+  z-index: -1;
+  background: radial-gradient(
+    520px circle at var(--cursor-x-pct, 50%) var(--cursor-y-pct, 50%),
+    color-mix(in srgb, var(--honey-400) 18%, transparent) 0%,
+    transparent 68%
+  );
+  opacity: 0.85;
+  transition: opacity 0.4s var(--ease-out);
+}
+
+/* z-index stacking: .viewport in bg-type.css */
+
+@keyframes ambient-drift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(1.5%, -1%) scale(1.02);
+  }
+  100% {
+    transform: translate(-1%, 1.5%) scale(1.01);
+  }
+}
+
+/* Glass gloss + cursor highlight on interactive surfaces */
+.tile::after,
+.theme-dot::after,
+.bubble-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.35s var(--ease-out);
+  background: radial-gradient(
+    circle 220px at var(--spot-x, 50%) var(--spot-y, 50%),
+    color-mix(in srgb, white 42%, transparent) 0%,
+    color-mix(in srgb, var(--honey-400) 12%, transparent) 28%,
+    transparent 62%
+  );
+  mix-blend-mode: overlay;
+}
+
+.tile.is-cursor-hover::after,
+.theme-dot.is-cursor-hover::after,
+.bubble-btn.is-cursor-hover::after {
+  opacity: 1;
+}
+
+.theme-dot {
+  overflow: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none;
+  }
+
+  body::after {
+    background: none;
+    opacity: 0;
+  }
+
+  .tile::after,
+  .theme-dot::after,
+  .bubble-btn::after {
+    display: none;
+  }
+}

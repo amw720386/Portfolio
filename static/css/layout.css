@@ -8,6 +8,7 @@
   gap: clamp(0.35rem, 1vw, 0.55rem);
   max-width: min(1320px, 100%);
   margin: 0 auto;
+  background: transparent;
 }
 
 .floating-teaser {
@@ -17,14 +18,17 @@
   z-index: 150;
   max-width: min(320px, calc(100vw - 1.35rem));
   padding: 0.55rem 2.15rem 0.55rem 0.9rem;
-  border-radius: 1rem 1.35rem 1rem 1.1rem;
-  background: var(--cream-50);
-  border: 3px solid var(--ink-900);
-  box-shadow: var(--bubble-shadow-hover);
+  border-radius: var(--radius-lg);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(18px) saturate(1.35);
+  -webkit-backdrop-filter: blur(18px) saturate(1.35);
+  box-shadow: var(--glass-shadow-hover);
   font-size: 0.8rem;
   line-height: 1.4;
   color: var(--brown-800);
-  animation: floating-teaser-hover 5s ease-in-out infinite;
+  overflow: hidden;
+  animation: floating-teaser-hover 8s ease-in-out infinite;
 }
 
 .floating-teaser[hidden] {
@@ -34,16 +38,10 @@
 @keyframes floating-teaser-hover {
   0%,
   100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  25% {
-    transform: translate(2px, -3px) rotate(0.4deg);
+    transform: translate(0, 0);
   }
   50% {
-    transform: translate(-1px, 2px) rotate(-0.35deg);
-  }
-  75% {
-    transform: translate(1px, -2px) rotate(0.25deg);
+    transform: translate(0, -3px);
   }
 }
 
@@ -93,6 +91,7 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
+  background: transparent;
 }
 
 .bento-stage--open .bento {
@@ -104,6 +103,7 @@
   flex: 1;
   min-height: 0;
   display: grid;
+  background: transparent;
   gap: clamp(0.45rem, 1vw, 0.75rem);
   /* 12 columns: clean halves/quarters; row 5 = 6+3+3 (open / résumé / GitHub) */
   grid-template-columns: repeat(12, 1fr);

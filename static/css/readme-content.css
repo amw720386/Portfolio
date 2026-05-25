@@ -5,7 +5,7 @@
   max-width: 100%;
   height: auto;
   border-radius: calc(var(--radius-lg) - 2px);
-  border: 2px solid var(--ink-900);
+  border: 1px solid var(--glass-border);
 }
 
 .readme-content video {
@@ -20,7 +20,7 @@
   width: 100%;
   height: auto;
   min-height: 12rem;
-  border: 3px solid var(--ink-900);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   margin: 0.85rem 0;
 }
@@ -30,7 +30,7 @@
   padding: 0.65rem 0.75rem;
   border-radius: var(--radius-lg);
   background: var(--cream-100);
-  border: 2px solid var(--ink-900);
+  border: 1px solid var(--glass-border);
   font-size: 0.82em;
 }
 
@@ -101,7 +101,7 @@
 
 .readme-content th,
 .readme-content td {
-  border: 2px solid var(--ink-900);
+  border: 1px solid var(--glass-border);
   padding: 0.45em 0.55em;
   text-align: left;
 }

@@ -16,7 +16,10 @@
 .compartment__flood {
   position: absolute;
   inset: 0;
-  background: radial-gradient(100% 90% at 50% 0%, var(--cream-100) 0%, var(--cream-200) 55%, var(--honey-400) 120%);
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 0%, color-mix(in srgb, var(--cream-50) 90%, transparent) 0%, transparent 55%),
+    radial-gradient(ellipse 100% 80% at 50% 100%, color-mix(in srgb, var(--honey-400) 25%, transparent) 0%, transparent 60%),
+    linear-gradient(165deg, var(--cream-100) 0%, var(--cream-200) 100%);
   clip-path: circle(0% at var(--ox, 50%) var(--oy, 50%));
   will-change: clip-path;
 }
@@ -36,14 +39,16 @@
   inset: clamp(0.4rem, 1.2vw, 0.65rem);
   display: flex;
   flex-direction: column;
-  border: 3px solid var(--ink-900);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-xl);
-  background: var(--cream-50);
-  box-shadow: var(--bubble-shadow);
+  background: color-mix(in srgb, var(--cream-50) 52%, transparent);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  box-shadow: var(--glass-shadow-hover);
   overflow: hidden;
   opacity: 0;
   transform: translateY(12px) scale(0.98);
-  transition: opacity 0.35s var(--ease-out) 0.12s, transform 0.45s var(--ease-bounce) 0.1s;
+  transition: opacity 0.35s var(--ease-out) 0.12s, transform 0.45s var(--ease-spring) 0.1s;
 }
 
 .compartment.is-open .compartment__panel {
@@ -61,8 +66,12 @@
   flex-shrink: 0;
   padding: clamp(0.45rem, 1.2vw, 0.75rem) clamp(0.65rem, 2vw, 1rem)
     max(0.55rem, calc(0.35rem + 6px));
-  border-bottom: 2px solid color-mix(in srgb, var(--ink-900) 10%, transparent);
-  background: linear-gradient(180deg, color-mix(in srgb, var(--cream-50) 98%, transparent) 0%, transparent 100%);
+  border-bottom: 1px solid var(--glass-border);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, white 25%, transparent) 0%,
+    transparent 100%
+  );
 }
 
 .compartment__chrome .bubble-btn {
@@ -114,10 +123,11 @@
 .resume-embed-wrap {
   flex: 1;
   min-height: 0;
-  border: 3px solid var(--ink-900);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   overflow: auto;
-  background: var(--cream-100);
+  background: color-mix(in srgb, var(--cream-100) 70%, transparent);
+  backdrop-filter: blur(8px);
   -webkit-overflow-scrolling: touch;
 }
 
@@ -159,20 +169,21 @@
   margin: 0 0 1.15rem;
   padding: 0.85rem 1rem;
   border-radius: var(--radius-lg);
-  border: 3px dashed var(--honey-500);
-  background: linear-gradient(135deg, color-mix(in srgb, white 90%, transparent) 0%, var(--cream-100) 100%);
+  border: 1px dashed color-mix(in srgb, var(--honey-400) 55%, transparent);
+  background: color-mix(in srgb, var(--cream-50) 55%, transparent);
+  backdrop-filter: blur(10px);
 }
 
 .open-to-work__badge {
   display: inline-block;
   font-size: 0.72rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
+  font-weight: 800;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 0.25rem 0.55rem;
   border-radius: 999px;
-  background: var(--honey-400);
-  border: 2px solid var(--ink-900);
+  background: color-mix(in srgb, var(--honey-400) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--honey-500) 40%, transparent);
   color: var(--ink-950);
   margin-bottom: 0.45rem;
 }
@@ -213,8 +224,9 @@
 .compartment__readme-html {
   padding: clamp(0.85rem, 2vw, 1.15rem);
   border-radius: var(--radius-lg);
-  background: color-mix(in srgb, var(--cream-50) 88%, transparent);
-  border: 3px solid var(--ink-900);
+  background: color-mix(in srgb, var(--cream-50) 55%, transparent);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
   font-size: clamp(0.88rem, 0.82rem + 0.25vw, 0.95rem);
   line-height: 1.55;
 }
@@ -225,6 +237,9 @@
   margin: 0 0 0.35rem;
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
   color: var(--ink-950);
 }
 
@@ -245,8 +260,9 @@
 .compartment__readme {
   padding: 0.85rem 1rem;
   border-radius: var(--radius-lg);
-  background: color-mix(in srgb, var(--cream-50) 75%, transparent);
-  border: 2px solid var(--ink-900);
+  background: color-mix(in srgb, var(--cream-50) 55%, transparent);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
   font-size: 0.92rem;
 }
 
@@ -254,6 +270,8 @@
   margin: 1.25rem 0 0.5rem;
   font-family: var(--font-display);
   font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
   color: var(--ink-950);
 }
 
@@ -297,22 +315,30 @@
 }
 
 .contact-link {
+  position: relative;
   display: block;
   padding: 0.65rem 1rem;
   border-radius: var(--radius-lg);
-  border: 3px solid var(--ink-900);
-  background: var(--cream-50);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px) saturate(1.25);
   box-shadow: var(--shadow-raised-sm);
   text-decoration: none;
   color: var(--brown-800);
   font-size: clamp(0.88rem, 0.84rem + 0.2vw, 0.98rem);
   line-height: 1.35;
-  transition: transform 0.2s var(--ease-bounce), box-shadow 0.2s;
+  overflow: hidden;
+  transition:
+    transform 0.35s var(--ease-spring),
+    box-shadow 0.35s var(--ease-out),
+    border-color 0.3s var(--ease-out);
 }
 
 .contact-link:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   color: var(--ink-950);
+  box-shadow: var(--glass-shadow-hover);
+  border-color: color-mix(in srgb, var(--honey-400) 35%, var(--glass-border));
 }
 
 @media (min-width: 520px) {
@@ -342,15 +368,21 @@
 }
 
 .repo-card {
+  position: relative;
   border-radius: var(--radius-lg);
-  border: 3px solid var(--ink-900);
-  background: var(--cream-50);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px) saturate(1.25);
   box-shadow: var(--shadow-raised-md);
-  transition: transform 0.2s var(--ease-bounce);
+  overflow: hidden;
+  transition:
+    transform 0.35s var(--ease-spring),
+    box-shadow 0.35s var(--ease-out);
 }
 
 .repo-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: var(--glass-shadow-hover);
 }
 
 .repo-card__link {
@@ -375,13 +407,13 @@
 
 .repo-card__badge {
   font-size: 0.65rem;
-  font-weight: 900;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.07em;
   padding: 0.15rem 0.4rem;
   border-radius: 999px;
-  background: var(--cream-200);
-  border: 2px solid var(--ink-900);
+  background: color-mix(in srgb, var(--cream-200) 60%, transparent);
+  border: 1px solid var(--glass-border);
 }
 
 .repo-card__desc {

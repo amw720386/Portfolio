@@ -1,38 +1,52 @@
-/* Bubble buttons */
+/* Glass buttons */
 
 .bubble-btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
-  padding: 0.55rem 1.1rem;
+  padding: 0.55rem 1.15rem;
   border-radius: 999px;
-  border: 3px solid var(--ink-900);
+  border: 1px solid var(--glass-border);
   font-family: var(--font-ui);
-  font-weight: 800;
+  font-weight: 700;
   font-size: 0.88rem;
   cursor: pointer;
   text-decoration: none;
-  transition: transform 0.2s var(--ease-bounce), box-shadow 0.2s;
-  box-shadow: 0 5px 0 var(--ink-900);
+  overflow: hidden;
+  backdrop-filter: blur(12px) saturate(1.3);
+  -webkit-backdrop-filter: blur(12px) saturate(1.3);
+  transition:
+    transform 0.35s var(--ease-spring),
+    box-shadow 0.35s var(--ease-out),
+    border-color 0.3s var(--ease-out);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, white 60%, transparent) inset,
+    0 4px 16px color-mix(in srgb, var(--ink-900) 8%, transparent);
 }
 
 .bubble-btn--primary {
-  background: var(--honey-400);
+  background: color-mix(in srgb, var(--honey-400) 75%, transparent);
   color: var(--ink-950);
+  border-color: color-mix(in srgb, var(--honey-500) 35%, transparent);
 }
 
 .bubble-btn--ghost {
-  background: var(--cream-50);
+  background: var(--glass-bg);
   color: var(--ink-900);
 }
 
 .bubble-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 7px 0 var(--ink-900);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, white 70%, transparent) inset,
+    0 8px 28px color-mix(in srgb, var(--honey-400) 25%, transparent);
+  border-color: color-mix(in srgb, var(--honey-400) 40%, var(--glass-border));
 }
 
 .bubble-btn:active {
-  transform: translateY(2px);
-  box-shadow: 0 3px 0 var(--ink-900);
+  transform: translateY(0) scale(0.98);
+  box-shadow: var(--tile-press-shadow);
+  transition-duration: 0.1s;
 }

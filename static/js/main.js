@@ -4,6 +4,9 @@ import { initThemes } from "./themes.js";
 import { initCompartment, isCompartmentOpen, closeCompartment, primeFeaturedReadmeCache } from "./compartment.js";
 import { initReadmeSheet, isReadmeSheetOpen, closeReadmeSheet } from "./readme-sheet.js";
 import { initLiveCommitTile } from "./live-commit.js";
+import { initCursorEffects } from "./cursor-effects.js";
+import { initBinaryRain, initAdamAsciiFlicker } from "./binary-rain.js";
+import { initTextDecodeHover } from "./text-decode.js";
 
 function setYear() {
   const el = document.getElementById("year");
@@ -16,6 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
   initCatBoop();
   void initTileAsciiPreview();
   initThemes();
+  initCursorEffects();
+  initBinaryRain();
+  initAdamAsciiFlicker();
+  initTextDecodeHover();
   initCompartment();
   initReadmeSheet();
   void primeFeaturedReadmeCache();

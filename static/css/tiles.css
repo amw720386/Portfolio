@@ -1,24 +1,37 @@
-/* Tiles: layered radials + grain; tints use theme tokens via color-mix. */
+/* Tiles: glass surfaces + layered gradients; tints use theme tokens via color-mix. */
 
 .tile {
   --tile-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.58' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-  --tile-sheer: color-mix(in srgb, var(--cream-50) 55%, transparent);
+  --tile-sheer: color-mix(in srgb, var(--cream-50) 22%, transparent);
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
   position: relative;
   min-height: 0;
   padding: clamp(0.85rem, 2vw, 1.35rem);
-  border: 3px solid var(--ink-900);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-xl);
-  background-color: var(--cream-50);
-  background-image: var(--tile-grain);
-  background-size: 160px 160px;
-  background-blend-mode: multiply;
-  background-repeat: repeat;
-  box-shadow: var(--bubble-shadow);
+  background-color: var(--tile-glass-bg);
+  background-image: linear-gradient(
+    148deg,
+    color-mix(in srgb, white 20%, transparent) 0%,
+    transparent 40%,
+    color-mix(in srgb, var(--honey-400) 7%, transparent) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: normal;
+  backdrop-filter: blur(14px) saturate(1.35);
+  -webkit-backdrop-filter: blur(14px) saturate(1.35);
+  box-shadow: var(--glass-shadow);
   text-align: left;
   cursor: default;
   overflow: hidden;
-  isolation: isolate;
-  transition: transform 0.25s var(--ease-bounce), box-shadow 0.25s var(--ease-out);
+  transition:
+    transform 0.4s var(--ease-spring),
+    box-shadow 0.4s var(--ease-out),
+    border-color 0.35s var(--ease-out),
+    background-color 0.55s var(--ease-out),
+    color 0.45s var(--ease-out);
 }
 
 .tile::before {
@@ -28,16 +41,19 @@
   border-radius: inherit;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.1;
-  background-image: var(--tile-grain);
-  background-size: 128px 128px;
-  mix-blend-mode: multiply;
+  opacity: 0.12;
+  background: var(--tile-glass-tint);
 }
 
 .tile--resume::before,
 .tile--github::before {
-  mix-blend-mode: soft-light;
-  opacity: 0.16;
+  background: color-mix(in srgb, var(--ink-900) 18%, transparent);
+  opacity: 0.5;
+}
+
+.tile > * {
+  position: relative;
+  z-index: 3;
 }
 
 button.tile {
@@ -48,14 +64,17 @@ button.tile {
 
 button.tile:hover,
 a.tile:hover {
-  transform: translateY(-3px) scale(1.01);
-  box-shadow: var(--bubble-shadow-hover);
+  transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y))
+    translateY(-4px) scale(1.012);
+  box-shadow: var(--glass-shadow-hover);
+  border-color: color-mix(in srgb, var(--honey-400) 35%, var(--glass-border));
 }
 
 button.tile:active,
 a.tile:active {
-  transform: translateY(1px) scale(0.99);
+  transform: perspective(900px) rotateX(0deg) rotateY(0deg) translateY(-1px) scale(0.995);
   box-shadow: var(--tile-press-shadow);
+  transition-duration: 0.12s;
 }
 
 .tile--hero {
@@ -66,58 +85,53 @@ a.tile:active {
   justify-content: center;
   gap: clamp(0.35rem, 0.85vw, 0.55rem);
   padding: clamp(0.85rem, 1.65vw, 1.2rem);
-  background-color: var(--cream-100);
   background-image:
-    radial-gradient(ellipse 95% 70% at 8% 12%, color-mix(in srgb, var(--cream-50) 97%, transparent) 0%, transparent 55%),
-    radial-gradient(ellipse 55% 45% at 88% 8%, color-mix(in srgb, var(--honey-400) 14%, transparent) 0%, transparent 65%),
-    radial-gradient(ellipse 80% 60% at 72% 92%, color-mix(in srgb, var(--cream-200) 55%, transparent) 0%, transparent 58%),
-    linear-gradient(168deg, var(--cream-50) 0%, var(--cream-100) 38%, var(--cream-200) 78%, color-mix(in srgb, var(--cream-300) 45%, transparent) 100%),
-    var(--tile-grain);
-  background-size: auto, auto, auto, auto, 160px 160px;
-  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
-  background-blend-mode: normal, normal, multiply, normal, multiply;
+    linear-gradient(
+      148deg,
+      color-mix(in srgb, white 22%, transparent) 0%,
+      transparent 42%,
+      color-mix(in srgb, var(--honey-400) 10%, transparent) 100%
+    ),
+    radial-gradient(ellipse 70% 55% at 88% 12%, color-mix(in srgb, var(--honey-400) 14%, transparent) 0%, transparent 62%);
 }
 
 .tile--intern {
   grid-column: 6 / 13;
   grid-row: 1 / 2;
-  background-color: var(--cream-200);
   background-image:
-    radial-gradient(ellipse 70% 55% at 18% 22%, color-mix(in srgb, var(--cream-50) 90%, transparent) 0%, transparent 62%),
-    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--honey-400) 18%, transparent) 0%, transparent 48%),
-    linear-gradient(152deg, color-mix(in srgb, var(--cream-50) 98%, transparent) 0%, var(--cream-100) 45%, var(--cream-200) 100%),
-    var(--tile-grain);
-  background-size: auto, auto, auto, 150px 150px;
-  background-repeat: no-repeat, no-repeat, no-repeat, repeat;
-  background-blend-mode: normal, multiply, normal, multiply;
+    linear-gradient(
+      148deg,
+      color-mix(in srgb, white 18%, transparent) 0%,
+      transparent 45%,
+      color-mix(in srgb, var(--honey-400) 8%, transparent) 100%
+    ),
+    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--honey-400) 12%, transparent) 0%, transparent 50%);
 }
 
 .tile--reel {
   grid-column: 6 / 13;
   grid-row: 2 / 3;
-  background-color: var(--cream-100);
   background-image:
-    radial-gradient(ellipse 90% 75% at 82% 88%, color-mix(in srgb, var(--honey-400) 42%, transparent) 0%, transparent 52%),
-    radial-gradient(ellipse 50% 40% at 12% 18%, color-mix(in srgb, var(--cream-50) 85%, transparent) 0%, transparent 70%),
-    linear-gradient(172deg, var(--cream-50) 0%, var(--cream-200) 52%, color-mix(in srgb, var(--honey-500) 28%, transparent) 100%),
-    var(--tile-grain);
-  background-size: auto, auto, auto, 148px 148px;
-  background-repeat: no-repeat, no-repeat, no-repeat, repeat;
-  background-blend-mode: multiply, normal, normal, multiply;
+    linear-gradient(
+      148deg,
+      color-mix(in srgb, white 16%, transparent) 0%,
+      transparent 45%,
+      color-mix(in srgb, var(--honey-400) 9%, transparent) 100%
+    ),
+    radial-gradient(ellipse 70% 60% at 85% 90%, color-mix(in srgb, var(--honey-400) 12%, transparent) 0%, transparent 55%);
 }
 
 .tile--interactive {
   grid-column: 6 / 13;
   grid-row: 3 / 4;
-  background-color: var(--cream-200);
   background-image:
-    radial-gradient(ellipse 65% 50% at 50% 108%, color-mix(in srgb, var(--honey-400) 35%, transparent) 0%, transparent 55%),
-    radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--cream-100) 75%, transparent) 0%, transparent 42%),
-    linear-gradient(158deg, var(--cream-50) 0%, var(--cream-100) 40%, var(--honey-400) 118%),
-    var(--tile-grain);
-  background-size: auto, auto, auto, 152px 152px;
-  background-repeat: no-repeat, no-repeat, no-repeat, repeat;
-  background-blend-mode: multiply, normal, soft-light, multiply;
+    linear-gradient(
+      148deg,
+      color-mix(in srgb, white 18%, transparent) 0%,
+      transparent 45%,
+      color-mix(in srgb, var(--honey-400) 8%, transparent) 100%
+    ),
+    radial-gradient(ellipse 55% 45% at 50% 100%, color-mix(in srgb, var(--honey-400) 11%, transparent) 0%, transparent 58%);
 }
 
 .tile--repos {
@@ -125,42 +139,60 @@ a.tile:active {
   grid-row: 4 / 5;
   align-self: stretch;
   min-height: 0;
-  background-color: var(--cream-50);
   background-image:
-    radial-gradient(ellipse 55% 70% at 0% 50%, color-mix(in srgb, var(--cream-100) 95%, transparent) 0%, transparent 58%),
-    radial-gradient(ellipse 45% 55% at 100% 30%, color-mix(in srgb, var(--cream-200) 50%, transparent) 0%, transparent 55%),
-    linear-gradient(161deg, var(--cream-50) 0%, var(--cream-100) 50%, var(--cream-200) 100%),
-    var(--tile-grain);
-  background-size: auto, auto, auto, 156px 156px;
-  background-repeat: no-repeat, no-repeat, no-repeat, repeat;
-  background-blend-mode: normal, multiply, normal, multiply;
+    linear-gradient(
+      148deg,
+      color-mix(in srgb, white 18%, transparent) 0%,
+      transparent 45%,
+      color-mix(in srgb, var(--honey-400) 7%, transparent) 100%
+    ),
+    radial-gradient(ellipse 50% 60% at 0% 50%, color-mix(in srgb, var(--cream-200) 12%, transparent) 0%, transparent 58%);
 }
 
 .tile--about {
   grid-column: 5 / 9;
   grid-row: 4 / 5;
-  background-color: var(--cream-50);
   background-image:
-    radial-gradient(ellipse 80% 90% at 35% 100%, color-mix(in srgb, var(--cream-200) 40%, transparent) 0%, transparent 50%),
-    linear-gradient(178deg, var(--cream-50) 0%, var(--cream-100) 100%),
-    var(--tile-grain);
-  background-size: auto, auto, 154px 154px;
-  background-repeat: no-repeat, no-repeat, repeat;
-  background-blend-mode: multiply, normal, multiply;
+    linear-gradient(
+      148deg,
+      color-mix(in srgb, white 16%, transparent) 0%,
+      transparent 45%,
+      color-mix(in srgb, var(--honey-400) 7%, transparent) 100%
+    ),
+    radial-gradient(ellipse 70% 55% at 35% 100%, color-mix(in srgb, var(--cream-200) 10%, transparent) 0%, transparent 52%);
 }
 
 .tile--contact {
   grid-column: 9 / 13;
   grid-row: 4 / 5;
-  background-color: var(--cream-100);
   background-image:
-    radial-gradient(ellipse 75% 60% at 92% 8%, color-mix(in srgb, var(--cream-50) 90%, transparent) 0%, transparent 55%),
-    radial-gradient(ellipse 60% 80% at 0% 100%, color-mix(in srgb, var(--cream-300) 22%, transparent) 0%, transparent 58%),
-    linear-gradient(188deg, var(--cream-50) 0%, var(--cream-100) 55%, var(--cream-200) 100%),
-    var(--tile-grain);
-  background-size: auto, auto, auto, 150px 150px;
-  background-repeat: no-repeat, no-repeat, no-repeat, repeat;
-  background-blend-mode: normal, multiply, normal, multiply;
+    linear-gradient(
+      148deg,
+      color-mix(in srgb, white 18%, transparent) 0%,
+      transparent 45%,
+      color-mix(in srgb, var(--honey-400) 8%, transparent) 100%
+    ),
+    radial-gradient(ellipse 60% 55% at 92% 8%, color-mix(in srgb, var(--cream-100) 12%, transparent) 0%, transparent 55%);
+}
+
+/* Light tiles: keep fills translucent so backdrop-filter shows the scene behind */
+.tile--hero,
+.tile--intern,
+.tile--reel,
+.tile--interactive,
+.tile--repos,
+.tile--about,
+.tile--contact,
+.tile--cat,
+.tile--themes,
+.tile--live-commit {
+  background-size: cover, auto;
+  background-repeat: no-repeat;
+}
+
+.tile--open-work {
+  background-size: auto, cover;
+  background-repeat: repeat, no-repeat;
 }
 
 .tile--resume {
@@ -172,16 +204,17 @@ a.tile:active {
   justify-content: center;
   text-align: center;
   padding: clamp(0.5rem, 1.1vw, 0.75rem) clamp(0.5rem, 1.2vw, 0.85rem);
-  background-color: var(--ink-900);
-  background-image:
-    radial-gradient(ellipse 120% 85% at 28% 12%, color-mix(in srgb, white 10%, transparent) 0%, transparent 52%),
-    radial-gradient(ellipse 80% 70% at 100% 100%, color-mix(in srgb, var(--ink-950) 35%, transparent) 0%, transparent 55%),
-    var(--tile-grain);
-  background-size: auto, auto, 140px 140px;
-  background-repeat: no-repeat, no-repeat, repeat;
-  background-blend-mode: soft-light, multiply, soft-light;
+  background-color: color-mix(in srgb, var(--ink-900) 52%, transparent);
+  background-image: radial-gradient(
+    ellipse 90% 70% at 30% 15%,
+    color-mix(in srgb, white 12%, transparent) 0%,
+    transparent 55%
+  );
+  background-repeat: no-repeat;
+  backdrop-filter: blur(14px) saturate(1.25);
+  -webkit-backdrop-filter: blur(14px) saturate(1.25);
   color: #fff;
-  border-color: var(--ink-950);
+  border-color: color-mix(in srgb, white 12%, transparent);
 }
 
 a.tile--github,
@@ -214,21 +247,21 @@ a.tile--github .tile__mini-hint {
   text-align: center;
   text-decoration: none;
   padding: clamp(0.5rem, 1.1vw, 0.72rem) clamp(0.55rem, 1.2vw, 0.75rem);
-  background-color: var(--brown-800);
-  background-image:
-    radial-gradient(ellipse 100% 90% at 15% 0%, color-mix(in srgb, var(--cream-50) 8%, transparent) 0%, transparent 45%),
-    radial-gradient(ellipse 70% 60% at 95% 85%, color-mix(in srgb, var(--ink-950) 28%, transparent) 0%, transparent 50%),
-    linear-gradient(145deg, color-mix(in srgb, var(--brown-800) 35%, transparent) 0%, transparent 42%),
-    var(--tile-grain);
-  background-size: auto, auto, auto, 136px 136px;
-  background-repeat: no-repeat, no-repeat, no-repeat, repeat;
-  background-blend-mode: soft-light, multiply, soft-light, overlay;
+  background-color: color-mix(in srgb, var(--brown-800) 50%, transparent);
+  background-image: radial-gradient(
+    ellipse 85% 65% at 15% 0%,
+    color-mix(in srgb, var(--cream-50) 10%, transparent) 0%,
+    transparent 50%
+  );
+  background-repeat: no-repeat;
+  backdrop-filter: blur(14px) saturate(1.25);
+  -webkit-backdrop-filter: blur(14px) saturate(1.25);
   color: var(--cream-50);
-  border-color: var(--ink-950);
+  border-color: color-mix(in srgb, white 10%, transparent);
 }
 
 .tile--open-work {
-  --open-work-ink-line: color-mix(in srgb, var(--ink-900) 3%, transparent);
+  --open-work-ink-line: color-mix(in srgb, var(--honey-400) 18%, transparent);
   grid-column: 1 / 7;
   grid-row: 5 / 6;
   display: flex;
@@ -236,22 +269,24 @@ a.tile--github .tile__mini-hint {
   justify-content: center;
   gap: 0.28rem;
   padding: clamp(0.5rem, 1.1vw, 0.72rem) clamp(0.7rem, 1.5vw, 0.95rem);
-  background-color: var(--cream-50);
   background-image:
     repeating-linear-gradient(
       -12deg,
       transparent,
-      transparent 11px,
-      var(--open-work-ink-line) 11px,
-      var(--open-work-ink-line) 12px
+      transparent 14px,
+      var(--open-work-ink-line) 14px,
+      var(--open-work-ink-line) 15px
     ),
-    radial-gradient(ellipse 85% 55% at 50% 0%, color-mix(in srgb, white 75%, transparent) 0%, transparent 58%),
-    linear-gradient(154deg, color-mix(in srgb, white 55%, transparent) 0%, var(--cream-100) 48%, var(--cream-200) 100%),
-    var(--tile-grain);
-  background-size: auto, auto, auto, 160px 160px;
-  background-repeat: repeat, no-repeat, no-repeat, repeat;
-  background-blend-mode: multiply, normal, normal, multiply;
+    linear-gradient(
+      148deg,
+      color-mix(in srgb, white 14%, transparent) 0%,
+      transparent 50%,
+      color-mix(in srgb, var(--honey-400) 6%, transparent) 100%
+    );
+  background-size: auto, cover;
+  background-repeat: repeat, no-repeat;
   border-style: dashed;
+  border-color: color-mix(in srgb, var(--honey-400) 40%, var(--glass-border));
   cursor: default;
   pointer-events: none;
   user-select: none;
@@ -261,14 +296,16 @@ a.tile--github .tile__mini-hint {
   display: inline-block;
   width: fit-content;
   font-size: 0.68rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
+  font-weight: 800;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 0.22rem 0.5rem;
+  padding: 0.24rem 0.55rem;
   border-radius: 999px;
-  background: var(--honey-400);
-  border: 2px solid var(--ink-900);
+  background: color-mix(in srgb, var(--honey-400) 75%, transparent);
+  backdrop-filter: blur(8px);
+  border: 1px solid color-mix(in srgb, var(--honey-500) 45%, transparent);
   color: var(--ink-950);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--honey-400) 35%, transparent);
 }
 
 .tile--open-work__text {
@@ -289,19 +326,14 @@ a.tile--github .tile__mini-hint {
   justify-content: center;
   text-align: left;
   padding: clamp(0.45rem, 1.2vw, 0.65rem) clamp(0.4rem, 1vw, 0.55rem);
-  background-color: var(--cream-200);
   background-image:
-    radial-gradient(
-      ellipse 70% 60% at 22% 18%,
-      color-mix(in srgb, color-mix(in srgb, var(--cream-100) 72%, var(--honey-400)) 65%, transparent) 0%,
-      transparent 62%
+    linear-gradient(
+      148deg,
+      color-mix(in srgb, white 16%, transparent) 0%,
+      transparent 45%,
+      color-mix(in srgb, var(--honey-400) 7%, transparent) 100%
     ),
-    radial-gradient(ellipse 90% 80% at 100% 100%, color-mix(in srgb, var(--honey-400) 12%, transparent) 0%, transparent 55%),
-    linear-gradient(168deg, color-mix(in srgb, var(--cream-50) 95%, transparent) 0%, var(--cream-100) 38%, var(--cream-200) 100%),
-    var(--tile-grain);
-  background-size: auto, auto, auto, 144px 144px;
-  background-repeat: no-repeat, no-repeat, no-repeat, repeat;
-  background-blend-mode: normal, multiply, normal, multiply;
+    radial-gradient(ellipse 65% 55% at 22% 18%, color-mix(in srgb, var(--honey-400) 10%, transparent) 0%, transparent 60%);
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -345,14 +377,14 @@ a.tile--github .tile__mini-hint {
   justify-content: center;
   gap: 0.5rem;
   padding: clamp(0.65rem, 1.5vw, 0.9rem) clamp(0.85rem, 2vw, 1.1rem);
-  background-color: var(--cream-50);
   background-image:
-    radial-gradient(ellipse 60% 80% at 0% 40%, color-mix(in srgb, var(--cream-200) 35%, transparent) 0%, transparent 55%),
-    linear-gradient(162deg, var(--cream-50) 0%, var(--cream-100) 42%, var(--cream-200) 100%),
-    var(--tile-grain);
-  background-size: auto, auto, 158px 158px;
-  background-repeat: no-repeat, no-repeat, repeat;
-  background-blend-mode: multiply, normal, multiply;
+    linear-gradient(
+      148deg,
+      color-mix(in srgb, white 18%, transparent) 0%,
+      transparent 45%,
+      color-mix(in srgb, var(--honey-400) 7%, transparent) 100%
+    ),
+    radial-gradient(ellipse 55% 70% at 0% 40%, color-mix(in srgb, var(--cream-200) 10%, transparent) 0%, transparent 55%);
   cursor: default;
 }
 
@@ -364,27 +396,28 @@ a.tile--github .tile__mini-hint {
   padding: clamp(0.55rem, 1.4vw, 0.82rem) clamp(0.75rem, 1.8vw, 1rem);
   text-decoration: none;
   color: inherit;
-  background-color: var(--cream-100);
   background-image:
-    radial-gradient(ellipse 75% 55% at 100% 0%, color-mix(in srgb, white 72%, transparent) 0%, transparent 50%),
-    radial-gradient(ellipse 50% 45% at 0% 100%, color-mix(in srgb, var(--honey-400) 10%, transparent) 0%, transparent 58%),
-    linear-gradient(148deg, color-mix(in srgb, white 88%, transparent) 0%, var(--cream-100) 48%, var(--cream-200) 100%),
-    var(--tile-grain);
-  background-size: auto, auto, auto, 154px 154px;
-  background-repeat: no-repeat, no-repeat, no-repeat, repeat;
-  background-blend-mode: normal, multiply, normal, multiply;
+    linear-gradient(
+      148deg,
+      color-mix(in srgb, white 20%, transparent) 0%,
+      transparent 45%,
+      color-mix(in srgb, var(--honey-400) 8%, transparent) 100%
+    ),
+    radial-gradient(ellipse 60% 50% at 100% 0%, color-mix(in srgb, white 14%, transparent) 0%, transparent 52%);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   transition: transform 0.2s var(--ease-bounce), box-shadow 0.2s var(--ease-out);
 }
 
 .tile--live-commit:hover {
-  transform: translateY(-3px) scale(1.01);
-  box-shadow: var(--bubble-shadow-hover);
+  transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y))
+    translateY(-4px) scale(1.012);
+  box-shadow: var(--glass-shadow-hover);
+  border-color: color-mix(in srgb, var(--honey-400) 35%, var(--glass-border));
 }
 
 .tile--live-commit:active {
-  transform: translateY(1px) scale(0.99);
+  transform: perspective(900px) rotateX(0deg) rotateY(0deg) translateY(-1px) scale(0.995);
   box-shadow: var(--tile-press-shadow);
 }
 
@@ -468,20 +501,34 @@ a.tile--github .tile__mini-hint {
   width: clamp(2rem, 5vw, 2.65rem);
   height: clamp(2rem, 5vw, 2.65rem);
   border-radius: 50%;
-  border: 3px solid var(--ink-900);
+  border: 1px solid color-mix(in srgb, white 35%, var(--glass-border));
   cursor: pointer;
   padding: 0;
   flex-shrink: 0;
-  transition: transform 0.2s var(--ease-bounce), box-shadow 0.2s;
-  box-shadow: var(--shadow-raised-sm-strong);
+  backdrop-filter: blur(10px) saturate(1.4);
+  -webkit-backdrop-filter: blur(10px) saturate(1.4);
+  transition:
+    transform 0.35s var(--ease-spring),
+    box-shadow 0.35s var(--ease-out),
+    border-color 0.3s var(--ease-out);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, white 70%, transparent) inset,
+    0 4px 14px color-mix(in srgb, var(--ink-900) 12%, transparent);
 }
 
 .theme-dot:hover {
-  transform: scale(1.08);
+  transform: scale(1.1);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, white 80%, transparent) inset,
+    0 0 24px color-mix(in srgb, var(--honey-400) 40%, transparent);
 }
 
 .theme-dot[aria-pressed="true"] {
-  box-shadow: 0 0 0 3px var(--cream-50), 0 0 0 6px var(--ink-900);
+  box-shadow:
+    0 0 0 2px var(--cream-50),
+    0 0 0 3px var(--honey-500),
+    0 0 20px color-mix(in srgb, var(--honey-400) 45%, transparent);
+  transform: scale(1.06);
 }
 
 .theme-dot[data-theme="default"] {
@@ -541,25 +588,54 @@ a.tile--github .tile__mini-hint {
   padding-bottom: clamp(1.45rem, 2.8vw, 2rem);
 }
 
+.tile__hint {
+  transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+}
+
+.tile__greeting,
+.tile__tagline,
+.tile__heading,
+.tile__blurb,
+.tile__tag,
+.tile__mini-label,
+.tile--live-commit__repo,
+.tile--live-commit__msg {
+  font-variant-numeric: tabular-nums;
+}
+
 .tile__greeting {
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(1.68rem, 2.85vw + 0.78rem, 2.85rem);
-  font-weight: 700;
-  line-height: 1.05;
+  font-weight: 800;
+  line-height: 1.02;
   color: var(--ink-950);
   text-wrap: balance;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.035em;
 }
 
 .tile__tagline {
   margin: 0;
-  font-family: var(--font-display);
+  font-family: var(--font-ui);
   font-size: clamp(1.05rem, 1.1vw + 0.75rem, 1.55rem);
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.25;
   color: var(--brown-800);
   text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.tile.is-decoding .tile__greeting,
+.tile.is-decoding .tile__tagline,
+.tile.is-decoding .tile__heading,
+.tile.is-decoding .tile__blurb,
+.tile.is-decoding .tile__tag,
+.tile.is-decoding .tile__mini-label {
+  color: var(--ink-950);
+}
+
+.tile:hover .tile__tag {
+  border-color: color-mix(in srgb, var(--honey-400) 40%, var(--glass-border));
 }
 
 .tile__lede {
@@ -581,13 +657,14 @@ a.tile--github .tile__mini-hint {
 
 .tile__chips li {
   font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   padding: 0.28rem 0.55rem;
   border-radius: 999px;
-  border: 2px solid var(--ink-900);
+  border: 1px solid var(--glass-border);
   background: var(--tile-sheer);
+  backdrop-filter: blur(8px);
   color: var(--brown-800);
 }
 
@@ -612,14 +689,15 @@ a.tile--github .tile__mini-hint {
 .tile__tag {
   display: inline-block;
   font-size: 0.68rem;
-  font-weight: 800;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.07em;
   color: var(--brown-700);
   background: var(--tile-sheer);
-  padding: 0.2rem 0.5rem;
+  backdrop-filter: blur(8px);
+  padding: 0.22rem 0.52rem;
   border-radius: 999px;
-  border: 2px solid var(--ink-900);
+  border: 1px solid var(--glass-border);
   margin-bottom: 0.35rem;
 }
 
@@ -629,7 +707,8 @@ a.tile--github .tile__mini-hint {
   font-family: var(--font-display);
   font-size: clamp(1.05rem, 0.95rem + 0.55vw, 1.42rem);
   font-weight: 700;
-  line-height: 1.12;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
   text-wrap: balance;
 }
 
@@ -647,11 +726,17 @@ a.tile--github .tile__mini-hint {
   right: clamp(0.65rem, 1.5vw, 0.9rem);
   bottom: clamp(0.55rem, 1.2vw, 0.85rem);
   font-size: 0.65rem;
-  font-weight: 900;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: var(--honey-500);
-  opacity: 0.85;
+  opacity: 0.75;
+  transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+}
+
+.tile:hover .tile__hint {
+  opacity: 1;
+  transform: translateX(-2px);
 }
 
 .tile--resume .tile__hint,

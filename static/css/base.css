@@ -1,40 +1,59 @@
 /* Custom properties, theme palettes, resets, typography, accessibility */
 
 :root {
-  --cream-50: #fffbf5;
-  --cream-100: #f7ecd9;
-  --cream-200: #eed9b8;
-  --cream-300: #e2c896;
-  --honey-400: #c9a66b;
-  --honey-500: #a67c52;
-  --brown-700: #5c4330;
-  --brown-800: #3d2e22;
-  --ink-900: #1e1812;
-  --ink-950: #120e0b;
-  --shadow-raised-sm: 0 4px 0 color-mix(in srgb, var(--ink-900) 10%, transparent);
-  --shadow-raised-sm-strong: 0 4px 0 color-mix(in srgb, var(--ink-900) 12%, transparent);
-  --shadow-raised-md: 0 5px 0 color-mix(in srgb, var(--ink-900) 12%, transparent);
-  --tile-press-shadow: var(--shadow-raised-sm),
-    0 10px 24px color-mix(in srgb, var(--ink-900) 14%, transparent);
-  --bubble-shadow: 0 8px 0 color-mix(in srgb, var(--ink-900) 12%, transparent),
-    0 18px 40px color-mix(in srgb, var(--ink-900) 18%, transparent);
-  --bubble-shadow-hover: 0 10px 0 color-mix(in srgb, var(--ink-900) 14%, transparent),
-    0 22px 48px color-mix(in srgb, var(--ink-900) 22%, transparent);
-  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
-  --font-ui: "Nunito", system-ui, sans-serif;
-  --radius-xl: clamp(1.25rem, 2.5vw, 2rem);
-  --radius-lg: 1.15rem;
-  --ease-bounce: cubic-bezier(0.34, 1.3, 0.64, 1);
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --cream-50: #faf8f5;
+  --cream-100: #f0ebe3;
+  --cream-200: #e4dbd0;
+  --cream-300: #d4c8b8;
+  --honey-400: #c4a574;
+  --honey-500: #9a7348;
+  --brown-700: #5a4a3a;
+  --brown-800: #3a3028;
+  --ink-900: #1a1612;
+  --ink-950: #0f0c0a;
+  --glass-bg: color-mix(in srgb, var(--cream-50) 34%, transparent);
+  --tile-glass-bg: color-mix(in srgb, var(--cream-50) 10%, transparent);
+  --tile-glass-tint: color-mix(in srgb, var(--cream-100) 14%, transparent);
+  --glass-border: color-mix(in srgb, var(--ink-900) 14%, transparent);
+  --glass-highlight: color-mix(in srgb, white 65%, transparent);
+  --glass-shadow:
+    0 1px 0 color-mix(in srgb, white 80%, transparent) inset,
+    0 -1px 0 color-mix(in srgb, var(--ink-900) 6%, transparent) inset,
+    0 8px 32px color-mix(in srgb, var(--ink-900) 10%, transparent),
+    0 2px 8px color-mix(in srgb, var(--ink-900) 6%, transparent);
+  --glass-shadow-hover:
+    0 1px 0 color-mix(in srgb, white 85%, transparent) inset,
+    0 12px 40px color-mix(in srgb, var(--honey-500) 14%, transparent),
+    0 4px 16px color-mix(in srgb, var(--ink-900) 10%, transparent);
+  --shadow-raised-sm: 0 2px 8px color-mix(in srgb, var(--ink-900) 8%, transparent);
+  --shadow-raised-sm-strong: 0 3px 12px color-mix(in srgb, var(--ink-900) 10%, transparent);
+  --shadow-raised-md: 0 4px 16px color-mix(in srgb, var(--ink-900) 10%, transparent);
+  --tile-press-shadow:
+    0 1px 0 color-mix(in srgb, white 50%, transparent) inset,
+    0 4px 16px color-mix(in srgb, var(--ink-900) 12%, transparent);
+  --bubble-shadow: var(--glass-shadow);
+  --bubble-shadow-hover: var(--glass-shadow-hover);
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-ui: "DM Sans", system-ui, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Consolas", monospace;
+  --radius-xl: clamp(1.1rem, 2.2vw, 1.65rem);
+  --radius-lg: 1rem;
+  --ease-bounce: cubic-bezier(0.22, 1.12, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.45, 0.64, 1);
+  --cursor-x: 50%;
+  --cursor-y: 50%;
+  --cursor-x-pct: 50%;
+  --cursor-y-pct: 50%;
 }
 
 [data-theme="green"] {
-  --cream-50: #f3fcf6;
-  --cream-100: #d9f2e4;
-  --cream-200: #b5e4cd;
-  --cream-300: #8fd1b4;
-  --honey-400: #52b788;
-  --honey-500: #2d6a4f;
+  --cream-50: #f4fbf7;
+  --cream-100: #e2f5ea;
+  --cream-200: #c8ead8;
+  --cream-300: #a8d9c0;
+  --honey-400: #4cb888;
+  --honey-500: #2a6b4f;
   --brown-700: #2d4a3a;
   --brown-800: #1b3328;
   --ink-900: #0f2419;
@@ -42,11 +61,11 @@
 }
 
 [data-theme="blue"] {
-  --cream-50: #f5f9ff;
-  --cream-100: #e0eefc;
-  --cream-200: #c5daf5;
-  --cream-300: #a3c4ed;
-  --honey-400: #6b9bd4;
+  --cream-50: #f6f9ff;
+  --cream-100: #e8f0fc;
+  --cream-200: #d0dff5;
+  --cream-300: #b3c9ed;
+  --honey-400: #5d9ad4;
   --honey-500: #3d6ea8;
   --brown-700: #3a4d66;
   --brown-800: #2a3548;
@@ -55,14 +74,14 @@
 }
 
 [data-theme="mono"] {
-  --cream-50: #f7f7f7;
-  --cream-100: #e8e8e8;
-  --cream-200: #d4d4d4;
-  --cream-300: #bdbdbd;
-  --honey-400: #9e9e9e;
-  --honey-500: #616161;
+  --cream-50: #f8f8f8;
+  --cream-100: #ececec;
+  --cream-200: #d8d8d8;
+  --cream-300: #c2c2c2;
+  --honey-400: #9a9a9a;
+  --honey-500: #5c5c5c;
   --brown-700: #424242;
-  --brown-800: #303030;
+  --brown-800: #2e2e2e;
   --ink-900: #1a1a1a;
   --ink-950: #0d0d0d;
 }
@@ -77,6 +96,13 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+html,
+body {
+  transition:
+    background-color 0.55s var(--ease-out),
+    color 0.45s var(--ease-out);
+}
+
 body {
   margin: 0;
   min-height: 100dvh;
@@ -84,7 +110,10 @@ body {
   font-size: clamp(0.95rem, 0.9rem + 0.35vw, 1.05rem);
   line-height: 1.55;
   color: var(--ink-900);
-  background: radial-gradient(120% 80% at 10% 0%, var(--cream-100) 0%, var(--cream-200) 45%, var(--honey-400) 100%);
+  background:
+    radial-gradient(ellipse 100% 80% at 50% -20%, var(--cream-100) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 60% at 100% 50%, color-mix(in srgb, var(--honey-400) 12%, transparent) 0%, transparent 50%),
+    linear-gradient(165deg, var(--cream-50) 0%, var(--cream-200) 55%, color-mix(in srgb, var(--cream-300) 80%, var(--honey-400)) 100%);
   background-attachment: fixed;
 }
 
@@ -98,10 +127,10 @@ html.compartment-open {
 
 a {
   color: var(--brown-700);
-  font-weight: 700;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.18em;
-  transition: color 0.2s var(--ease-out);
+  font-weight: 600;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.2em;
+  transition: color 0.25s var(--ease-out);
 }
 
 a:hover {
@@ -110,7 +139,7 @@ a:hover {
 
 a:focus-visible,
 button:focus-visible {
-  outline: 3px solid var(--honey-500);
+  outline: 2px solid var(--honey-500);
   outline-offset: 3px;
 }
 
@@ -120,9 +149,10 @@ button:focus-visible {
   top: auto;
   z-index: 2000;
   padding: 0.65rem 1rem;
-  background: var(--ink-900);
+  background: color-mix(in srgb, var(--ink-900) 88%, transparent);
+  backdrop-filter: blur(12px);
   color: var(--cream-50);
-  font-weight: 800;
+  font-weight: 700;
   border-radius: 999px;
 }
 
