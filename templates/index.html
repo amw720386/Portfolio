@@ -51,6 +51,11 @@
         <div><h3><a href="{{ url_for('project', slug='a-dollar-through-the-2000s') }}" target="_blank" rel="noopener noreferrer">A Dollar Through the 2000s ↗</a></h3><p>Interactive market visualization. <a class="inline-link" href="https://github.com/amw720386/A-Dollar-Through-The-2000s" target="_blank" rel="noopener noreferrer">Source ↗</a></p></div>
       </div>
       <a class="more-link" href="https://github.com/amw720386?tab=repositories" target="_blank" rel="noopener noreferrer">all projects on GitHub ↗</a>
+      <a class="latest-commit" id="latest-commit" href="https://github.com/amw720386" target="_blank" rel="noopener noreferrer" hidden>
+        <span class="latest-commit__top"><span><span class="latest-commit__dot" aria-hidden="true"></span>latest commit</span><span id="latest-commit-date"></span></span>
+        <span class="latest-commit__message" id="latest-commit-message"></span>
+        <span class="latest-commit__repo" id="latest-commit-repo"></span>
+      </a>
     </section>
 
     <section class="section contact" id="contact" aria-labelledby="contact-title">
@@ -98,4 +103,5 @@
 </dialog>
 <script src="{{ url_for('static', filename='js/command-menu.js') }}" defer></script>
 <script src="{{ url_for('static', filename='js/theme.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/latest-commit.js') }}" defer></script>
 {% endblock %}
