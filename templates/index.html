@@ -36,7 +36,7 @@
       <h2 class="section-heading" id="projects-title">projects</h2>
       <div class="entry project" id="project-block-gtq">
         <span class="entry-meta"><span class="entry-date">01</span><img class="entry-icon entry-icon--tint" src="{{ url_for('static', filename='icons/block-gtq.svg') }}" width="20" height="20" alt=""></span>
-        <div><h3><a href="https://github.com/amw720386/block-gqt-webgpu" target="_blank" rel="noopener noreferrer">Block-GTQ WebGPU ↗</a></h3><p>2.24× smaller key storage. Slower inference.</p></div>
+        <div><h3><a href="{{ url_for('project', slug='block-gtq-webgpu') }}" target="_blank" rel="noopener noreferrer">Block-GTQ WebGPU ↗</a></h3><p>2.24× smaller key storage. Slower inference.</p></div>
       </div>
       <div class="entry project" id="project-brushai">
         <span class="entry-meta"><span class="entry-date">02</span><img class="entry-icon entry-icon--tint" src="{{ url_for('static', filename='icons/brushai.svg') }}" width="20" height="20" alt=""></span>
@@ -44,11 +44,11 @@
       </div>
       <div class="entry project" id="project-internflow">
         <span class="entry-meta"><span class="entry-date">03</span><img class="entry-icon entry-icon--internflow" src="{{ url_for('static', filename='icons/internflow.svg') }}" width="20" height="20" alt=""></span>
-        <div><h3><a href="https://github.com/amw720386/InternFlow" target="_blank" rel="noopener noreferrer">InternFlow ↗</a></h3><p>Internship leads and outreach drafts.</p></div>
+        <div><h3><a href="{{ url_for('project', slug='internflow') }}" target="_blank" rel="noopener noreferrer">InternFlow ↗</a></h3><p>Internship leads and outreach drafts.</p></div>
       </div>
       <div class="entry project" id="project-dollar">
         <span class="entry-meta"><span class="entry-date">04</span><img class="entry-icon" src="{{ url_for('static', filename='icons/adtt2s.svg') }}" width="20" height="20" alt=""></span>
-        <div><h3><a href="https://adtt2s.ahamedwajibu.com" target="_blank" rel="noopener noreferrer">A Dollar Through the 2000s ↗</a></h3><p>Interactive market visualization. <a class="inline-link" href="https://github.com/amw720386/A-Dollar-Through-The-2000s" target="_blank" rel="noopener noreferrer">Source ↗</a></p></div>
+        <div><h3><a href="{{ url_for('project', slug='a-dollar-through-the-2000s') }}" target="_blank" rel="noopener noreferrer">A Dollar Through the 2000s ↗</a></h3><p>Interactive market visualization. <a class="inline-link" href="https://github.com/amw720386/A-Dollar-Through-The-2000s" target="_blank" rel="noopener noreferrer">Source ↗</a></p></div>
       </div>
       <a class="more-link" href="https://github.com/amw720386?tab=repositories" target="_blank" rel="noopener noreferrer">all projects on GitHub ↗</a>
     </section>
@@ -79,10 +79,10 @@
     <a href="#projects" data-command="projects builds"><span>projects</span><small>selected work</small></a>
     <a href="#contact" data-command="contact email"><span>contact</span><small>email</small></a>
     <p class="command-caption">projects</p>
-    <a href="#project-block-gtq" data-command="block gtq webgpu kv cache compression"><span>Block-GTQ WebGPU</span><small>project</small></a>
+    <a href="{{ url_for('project', slug='block-gtq-webgpu') }}" target="_blank" rel="noopener noreferrer" data-command="block gtq webgpu kv cache compression"><span>Block-GTQ WebGPU</span><small>project ↗</small></a>
     <a href="#project-brushai" data-command="brushai krita image editor"><span>BrushAI</span><small>project</small></a>
-    <a href="#project-internflow" data-command="internflow internship outreach"><span>InternFlow</span><small>project</small></a>
-    <a href="#project-dollar" data-command="a dollar through the 2000s markets visualization"><span>A Dollar Through the 2000s</span><small>project</small></a>
+    <a href="{{ url_for('project', slug='internflow') }}" target="_blank" rel="noopener noreferrer" data-command="internflow internship outreach"><span>InternFlow</span><small>project ↗</small></a>
+    <a href="{{ url_for('project', slug='a-dollar-through-the-2000s') }}" target="_blank" rel="noopener noreferrer" data-command="a dollar through the 2000s markets visualization"><span>A Dollar Through the 2000s</span><small>project ↗</small></a>
     <p class="command-caption">appearance</p>
     <button type="button" data-command="dark mode theme appearance" data-theme-command="dark"><span>dark mode</span><small>switch</small></button>
     <button type="button" data-command="light mode theme appearance" data-theme-command="light"><span>light mode</span><small>switch</small></button>

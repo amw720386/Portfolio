@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Page not found · Ahamed Wajibu{% endblock %}
+{% block body %}
+<div class="page page--error">
+  <header class="site-header">
+    <a class="wordmark" href="{{ url_for('main') }}" aria-label="Ahamed Wajibu, home">aw<span>.</span></a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="{{ url_for('main') }}#about">about</a>
+      <a href="{{ url_for('main') }}#work">work</a>
+      <a href="{{ url_for('main') }}#projects">projects</a>
+      <a href="{{ url_for('main') }}#contact">contact</a>
+    </nav>
+    <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch to dark mode" title="Toggle dark mode"><span aria-hidden="true">☾</span></button>
+  </header>
+
+  <main id="main" class="error-main">
+    <p class="intro-kicker">lost in the margins</p>
+    <h1>404<span>.</span></h1>
+    <p class="error-lede">This page isn't in the notebook.</p>
+    <p class="error-detail">The link may have moved, or the address may have a typo.</p>
+    <a class="error-home" href="{{ url_for('main') }}">← back to the homepage</a>
+  </main>
+
+  <footer class="site-footer"><span><span id="year">2026</span> © Ahamed Mohamed Wajibu</span></footer>
+</div>
+<script src="{{ url_for('static', filename='js/theme.js') }}" defer></script>
+{% endblock %}
