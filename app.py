@@ -1,6 +1,4 @@
-import os
-
-from flask import Flask, abort, render_template, send_file
+from flask import Flask, render_template, send_from_directory
 
 app = Flask(__name__)
 
@@ -12,18 +10,11 @@ def main():
 
 @app.route("/resume")
 def resume():
-    path = os.path.join(app.root_path, "static", "assets", "Resume.pdf")
-    if not os.path.isfile(path):
-        abort(404)
-    return send_file(
-        path,
-        mimetype="application/pdf",
-        as_attachment=False,
-        download_name="Resume.pdf",
-        max_age=0,
-        conditional=True,
+    return send_from_directory(
+        "static/assets", "Resume.pdf", mimetype="application/pdf", as_attachment=False
     )
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=True)
 

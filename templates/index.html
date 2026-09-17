@@ -1,20 +1,101 @@
 {% extends "base.html" %}
-
 {% block body %}
-  {% include "partials/bg-type.html" %}
-  {% include "partials/teaser.html" %}
+<div class="page" id="top">
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="Ahamed Wajibu, back to top">aw<span>.</span></a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="#about">about</a>
+      <a href="#work">work</a>
+      <a href="#projects">projects</a>
+      <a href="#contact">contact</a>
+    </nav>
+    <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch to dark mode" title="Toggle dark mode"><span aria-hidden="true">☾</span></button>
+    <button class="command-trigger" type="button" id="open-command" aria-label="Open command menu" aria-haspopup="dialog" aria-controls="command-menu"><kbd>Ctrl K</kbd></button>
+  </header>
 
-  <div class="viewport" id="bento-root">
-    <div class="bento-stage" id="bento-stage">
-      {% include "partials/bento.html" %}
-      {% include "partials/compartment.html" %}
-    </div>
+  <main id="main">
+    <section class="intro" id="about" aria-labelledby="intro-title">
+      <p class="intro-kicker">I'm</p>
+      <h1 id="intro-title">Ahamed Wajibu<span>.</span></h1>
+      <p class="intro-lede">Math at Waterloo. I build AI systems and tools. <span aria-hidden="true">🚀</span></p>
+    </section>
 
-    <footer class="viewport__foot">
-      <p>© <span id="year"></span> · Ahamed Mohamed Wajibu</p>
-    </footer>
+    <section class="section" id="work" aria-labelledby="work-title">
+      <h2 class="section-heading" id="work-title">experience</h2>
+      <div class="entry">
+        <span class="entry-meta"><span class="entry-date">2026</span><img class="entry-icon" src="{{ url_for('static', filename='icons/mitsubishi.svg') }}" width="20" height="20" alt=""></span>
+        <div><h3>AI Engineer <span>@ MHI Canada Aerospace</span></h3><p>Search over 2,000+ aircraft manuals.</p></div>
+      </div>
+      <div class="entry">
+        <span class="entry-meta"><span class="entry-date">2025</span><img class="entry-icon" src="{{ url_for('static', filename='icons/mitsubishi.svg') }}" width="20" height="20" alt=""></span>
+        <div><h3>Software Developer <span>@ MHI Canada Aerospace</span></h3><p>C# tools for production workflows.</p></div>
+      </div>
+    </section>
+
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <h2 class="section-heading" id="projects-title">projects</h2>
+      <div class="entry project" id="project-block-gtq">
+        <span class="entry-meta"><span class="entry-date">01</span><img class="entry-icon entry-icon--tint" src="{{ url_for('static', filename='icons/block-gtq.svg') }}" width="20" height="20" alt=""></span>
+        <div><h3><a href="https://github.com/amw720386/block-gqt-webgpu" target="_blank" rel="noopener noreferrer">Block-GTQ WebGPU ↗</a></h3><p>2.24× smaller key storage. Slower inference.</p></div>
+      </div>
+      <div class="entry project" id="project-brushai">
+        <span class="entry-meta"><span class="entry-date">02</span><img class="entry-icon entry-icon--tint" src="{{ url_for('static', filename='icons/brushai.svg') }}" width="20" height="20" alt=""></span>
+        <div><h3>BrushAI</h3><p>AI image edits in Krita.</p></div>
+      </div>
+      <div class="entry project" id="project-internflow">
+        <span class="entry-meta"><span class="entry-date">03</span><img class="entry-icon entry-icon--internflow" src="{{ url_for('static', filename='icons/internflow.svg') }}" width="20" height="20" alt=""></span>
+        <div><h3><a href="https://github.com/amw720386/InternFlow" target="_blank" rel="noopener noreferrer">InternFlow ↗</a></h3><p>Internship leads and outreach drafts.</p></div>
+      </div>
+      <div class="entry project" id="project-dollar">
+        <span class="entry-meta"><span class="entry-date">04</span><img class="entry-icon" src="{{ url_for('static', filename='icons/adtt2s.svg') }}" width="20" height="20" alt=""></span>
+        <div><h3><a href="https://adtt2s.ahamedwajibu.com" target="_blank" rel="noopener noreferrer">A Dollar Through the 2000s ↗</a></h3><p>Interactive market visualization. <a class="inline-link" href="https://github.com/amw720386/A-Dollar-Through-The-2000s" target="_blank" rel="noopener noreferrer">Source ↗</a></p></div>
+      </div>
+      <a class="more-link" href="https://github.com/amw720386?tab=repositories" target="_blank" rel="noopener noreferrer">all projects on GitHub ↗</a>
+    </section>
+
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <h2 class="section-heading" id="contact-title">contact</h2>
+      <div class="contact-links" aria-label="Social and contact links">
+        <a href="https://github.com/amw720386" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .7A11.3 11.3 0 0 0 8.43 22.72c.57.1.78-.24.78-.54v-2.05c-3.18.7-3.86-1.35-3.86-1.35-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.73-1.53-2.54-.29-5.21-1.27-5.21-5.65 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.11 1.17A10.9 10.9 0 0 1 12 6.32c.96 0 1.92.13 2.82.38 2.15-1.48 3.1-1.17 3.1-1.17.63 1.57.24 2.73.12 3.02.74.8 1.18 1.82 1.18 3.07 0 4.39-2.68 5.35-5.23 5.64.41.36.78 1.05.78 2.12v2.8c0 .3.2.65.78.54A11.3 11.3 0 0 0 12 .7Z"/></svg></a>
+        <a href="https://www.linkedin.com/in/ahamed-wajibu" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5.2 3.2a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3.5 9h3.4v11.5H3.5V9Zm5.5 0h3.3v1.6h.1a3.65 3.65 0 0 1 3.3-1.8c3.5 0 4.2 2.3 4.2 5.2v6.5h-3.4v-5.8c0-1.4 0-3.1-1.9-3.1-1.9 0-2.2 1.5-2.2 3v5.9H9V9Z"/></svg></a>
+        <a href="https://x.com/dev_ahamedw" target="_blank" rel="noopener noreferrer" aria-label="X" title="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3.5 20 20.5M20 3.5 4 20.5" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/></svg></a>
+        <a href="mailto:a226moha@uwaterloo.ca" aria-label="Email" title="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m3.5 7 8.5 6.5L20.5 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><span><span id="year">2026</span> © Ahamed Mohamed Wajibu</span><a class="cow-link" href="https://interactive.ahamedwajibu.com" target="_blank" rel="noopener noreferrer" aria-label="Visit my interactive portfolio" title="Interactive portfolio"><img src="{{ url_for('static', filename='assets/cow.gif') }}" width="96" height="96" alt="Animated pixel cow"></a></footer>
+</div>
+
+<dialog class="command-menu" id="command-menu" aria-labelledby="command-title">
+  <div class="command-head">
+    <label id="command-title" for="command-input"><span aria-hidden="true">&gt;</span><span class="sr-only">Search portfolio</span></label>
+    <input id="command-input" type="text" autocomplete="off" spellcheck="false" placeholder="Search..." aria-label="Search commands">
+    <button type="button" id="close-command" aria-label="Close command menu">Esc</button>
   </div>
-
-  {% include "partials/ascii-modal.html" %}
-  {% include "partials/readme-sheet.html" %}
+  <div class="command-results" id="command-results">
+    <p class="command-caption">navigate</p>
+    <a href="#about" data-command="about home introduction"><span>about</span><small>introduction</small></a>
+    <a href="#work" data-command="work experience"><span>work</span><small>experience</small></a>
+    <a href="#projects" data-command="projects builds"><span>projects</span><small>selected work</small></a>
+    <a href="#contact" data-command="contact email"><span>contact</span><small>email</small></a>
+    <p class="command-caption">projects</p>
+    <a href="#project-block-gtq" data-command="block gtq webgpu kv cache compression"><span>Block-GTQ WebGPU</span><small>project</small></a>
+    <a href="#project-brushai" data-command="brushai krita image editor"><span>BrushAI</span><small>project</small></a>
+    <a href="#project-internflow" data-command="internflow internship outreach"><span>InternFlow</span><small>project</small></a>
+    <a href="#project-dollar" data-command="a dollar through the 2000s markets visualization"><span>A Dollar Through the 2000s</span><small>project</small></a>
+    <p class="command-caption">appearance</p>
+    <button type="button" data-command="dark mode theme appearance" data-theme-command="dark"><span>dark mode</span><small>switch</small></button>
+    <button type="button" data-command="light mode theme appearance" data-theme-command="light"><span>light mode</span><small>switch</small></button>
+    <p class="command-caption">links</p>
+    <a href="https://github.com/amw720386" target="_blank" rel="noopener noreferrer" data-command="github code"><span>github ↗</span><small>code</small></a>
+    <a href="https://www.linkedin.com/in/ahamed-wajibu" target="_blank" rel="noopener noreferrer" data-command="linkedin"><span>linkedin ↗</span><small>profile</small></a>
+    <a href="https://x.com/dev_ahamedw" target="_blank" rel="noopener noreferrer" data-command="x twitter dev ahamedw"><span>x ↗</span><small>social</small></a>
+    <a href="{{ url_for('resume') }}" target="_blank" rel="noopener" data-command="resume résumé cv"><span>résumé ↗</span><small>PDF</small></a>
+    <a href="mailto:a226moha@uwaterloo.ca" data-command="email mail contact"><span>email ↗</span><small>say hello</small></a>
+    <p class="command-empty" id="command-empty" hidden>No commands found.</p>
+  </div>
+  <div class="command-foot"><span>↑ ↓ navigate</span><span>↵ open</span><span>esc close</span></div>
+</dialog>
+<script src="{{ url_for('static', filename='js/command-menu.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/theme.js') }}" defer></script>
 {% endblock %}
