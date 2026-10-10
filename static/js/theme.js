@@ -1,6 +1,8 @@
 const toggle = document.getElementById("theme-toggle");
 const root = document.documentElement;
 let animating = false;
+const moonIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.1 2.1a9.9 9.9 0 1 0 9.8 12.2 7.7 7.7 0 0 1-9.8-12.2Z"/></svg>';
+const sunIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M18.9 5.1l-1.6 1.6M6.7 17.3l-1.6 1.6"/></svg>';
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -8,7 +10,7 @@ function setTheme(theme) {
   root.dataset.theme = theme;
   const dark = theme === "dark";
   document.querySelector('meta[name="theme-color"]').content = dark ? "#17291f" : "#f8f7f3";
-  toggle.querySelector("span").textContent = dark ? "☀" : "☾";
+  toggle.innerHTML = dark ? sunIcon : moonIcon;
   toggle.setAttribute("aria-label", "Switch to " + (dark ? "light" : "dark") + " mode");
   toggle.setAttribute("aria-pressed", String(dark));
   toggle.title = "Switch to " + (dark ? "light" : "dark") + " mode";
@@ -71,7 +73,7 @@ toggle.addEventListener("click", async () => {
   page.style.transform = "translateY(-" + scrollY + "px)";
   page.querySelector(".site-header").style.visibility = "hidden";
   const previewHeader = header.cloneNode(true);
-  previewHeader.querySelector("#theme-toggle span").textContent = next === "dark" ? "☀" : "☾";
+  previewHeader.querySelector("#theme-toggle").innerHTML = next === "dark" ? sunIcon : moonIcon;
   preview.append(page);
   preview.append(previewHeader);
   document.body.append(preview);

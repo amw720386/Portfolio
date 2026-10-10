@@ -52,7 +52,8 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .site-nav a:hover, .more-link:hover, .inline-link:hover { color: var(--accent); }
 .site-nav a:hover, .more-link:hover { transform: translateY(-2px); }
 .theme-toggle, .command-trigger { display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--rule); background: transparent; color: var(--muted); border-radius: 5px; cursor: pointer; transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease; }
-.theme-toggle { width: 32px; height: 32px; font: 20px/1 var(--serif); }
+.theme-toggle { width: 32px; height: 32px; padding: 0; line-height: 0; }
+.theme-toggle svg { display: block; width: 16px; height: 16px; flex: none; }
 .command-trigger { min-height: 32px; padding: 4px 6px; font: 10px var(--mono); white-space: nowrap; }
 .theme-toggle:hover, .command-trigger:hover { background: #24533b; border-color: #24533b; color: #f5f1e9; transform: translateY(-2px); }
 .command-trigger:hover kbd { border-color: #71977a; color: #f5f1e9; }
