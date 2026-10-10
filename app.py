@@ -3,6 +3,7 @@ from flask import Flask, Response, abort, redirect, render_template, send_from_d
 app = Flask(__name__)
 
 PROJECT_DESTINATIONS = {
+    "forge": "https://github.com/amw720386/forge",
     "block-gtq-webgpu": "https://github.com/amw720386/block-gqt-webgpu",
     "brushai": "https://github.com/amw720386",
     "internflow": "https://github.com/amw720386/InternFlow",
