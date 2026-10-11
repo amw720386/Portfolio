@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="page">
+  <header class="site-header">
+    <a class="wordmark" href="{{ url_for('main') }}" aria-label="aw. — Ahamed Wajibu, home">aw<span>.</span></a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="{{ url_for('main') }}#about">about</a>
+      <a href="{{ url_for('main') }}#work">work</a>
+      <a href="{{ url_for('main') }}#projects">projects</a>
+      <a href="{{ url_for('main') }}#contact">contact</a>
+    </nav>
+    <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch to dark mode" title="Toggle dark mode"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.1 2.1a9.9 9.9 0 1 0 9.8 12.2 7.7 7.7 0 0 1-9.8-12.2Z"/></svg></button>
+  </header>
+  <main id="main" class="project-detail">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="{{ url_for('main') }}">Home</a><span aria-hidden="true"> / </span><span aria-current="page">{{ project.name }}</span></nav>
+    <div class="intro">
+      <p class="intro-kicker">a project by Ahamed Wajibu</p>
+      <h1>{{ project.name }}<span>.</span></h1>
+      <p class="intro-lede">{{ project.lede }}</p>
+      <p class="project-technologies">{{ project.languages|join(' · ') }}</p>
+      <a class="inline-link" href="{{ project.repository }}">Source on GitHub ↗</a>
+    </div>
+    {% for section in project.sections %}
+    <section class="section" aria-labelledby="section-{{ loop.index }}">
+      <h2 class="section-heading" id="section-{{ loop.index }}">{{ section.heading }}</h2>
+      {% if section.get('table') %}
+      <table class="project-table">
+        <thead><tr>{% for heading in section.table.headers %}<th scope="col">{{ heading }}</th>{% endfor %}</tr></thead>
+        <tbody>{% for row in section.table.rows %}<tr>{% for cell in row %}<td>{{ cell }}</td>{% endfor %}</tr>{% endfor %}</tbody>
+      </table>
+      {% endif %}
+      {% for paragraph in section.paragraphs %}<p>{{ paragraph }}</p>{% endfor %}
+      {% if section.get('bullets') %}
+      <ul class="source-links">{% for bullet in section.bullets %}<li>{{ bullet }}</li>{% endfor %}</ul>
+      {% endif %}
+    </section>
+    {% endfor %}
+    <section class="section" aria-labelledby="sources-title">
+      <h2 class="section-heading" id="sources-title">Sources and attribution</h2>
+      <p>{{ project.attribution }} <a class="inline-link" href="{{ project.attribution_url }}">Upstream details ↗</a></p>
+      <ul class="source-links">{% for label, href in project.links %}<li><a class="inline-link" href="{{ href }}">{{ label }} ↗</a></li>{% endfor %}</ul>
+      <p class="source-note">Excerpts from the linked READMEs.</p>
+    </section>
+    <nav class="section project-navigation" aria-label="Related projects">
+      <a class="inline-link" href="{{ url_for('main') }}#projects">← all projects</a>
+      <a class="inline-link" href="{{ url_for('project', slug=project.other_slug) }}">{{ project.other_name }} →</a>
+    </nav>
+  </main>
+  <footer class="site-footer"><span><span id="year">2026</span> © Ahamed Mohamed Wajibu</span></footer>
+</div>
+<script src="{{ url_for('static', filename='js/theme.js') }}" defer></script>
+{% endblock %}

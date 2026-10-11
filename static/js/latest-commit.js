@@ -32,4 +32,15 @@ async function showLatestCommit() {
   }
 }
 
-showLatestCommit();
+// This optional widget should not compete with the initial page render.
+if (commitLink && "IntersectionObserver" in window) {
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some((entry) => entry.isIntersecting)) {
+      observer.disconnect();
+      showLatestCommit();
+    }
+  }, { rootMargin: "150px" });
+  observer.observe(commitLink);
+} else {
+  window.addEventListener("load", showLatestCommit, { once: true });
+}

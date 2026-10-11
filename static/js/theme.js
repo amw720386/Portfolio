@@ -24,7 +24,8 @@ function updateHeader() {
   header.classList.toggle("is-scrolled", scrollY > 12);
 }
 window.addEventListener("scroll", updateHeader, { passive: true });
-updateHeader();
+// Inspect restored scroll position after the initial styles have been laid out.
+window.addEventListener("pageshow", updateHeader);
 
 function commitTheme(theme) {
   root.classList.add("theme-switching");
