@@ -84,8 +84,8 @@ h1 { margin: 0 0 24px; font: 400 clamp(3.2rem, 8vw, 5.2rem)/1 var(--serif); lett
 .project h3 a:hover { color: var(--accent); }
 .inline-link { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 .more-link { display: inline-block; margin-top: 21px; border-bottom: 1px solid var(--rule); padding-bottom: 5px; font: 10px var(--mono); }
-.latest-commit { display: block; min-height: 106px; margin-top: 26px; padding: 15px 17px; border: 1px solid var(--rule); border-radius: 7px; background: color-mix(in srgb, var(--paper) 70%, transparent); transition: background .2s ease, border-color .2s ease, transform .2s ease; }
-.latest-commit[hidden] { display: block; visibility: hidden; }
+.latest-commit { display: block; margin-top: 26px; padding: 15px 17px; border: 1px solid var(--rule); border-radius: 7px; background: color-mix(in srgb, var(--paper) 70%, transparent); transition: background .2s ease, border-color .2s ease, transform .2s ease; }
+.latest-commit[hidden] { display: none; }
 .latest-commit:hover { background: var(--hover); border-color: var(--accent); transform: translateY(-2px); }
 .latest-commit__top { display: flex; justify-content: space-between; gap: 12px; color: var(--muted); font: 10px var(--mono); }
 .latest-commit__dot { display: inline-block; width: 6px; height: 6px; margin-right: 8px; border-radius: 50%; background: var(--accent); vertical-align: 1px; }
@@ -124,18 +124,6 @@ h1 { margin: 0 0 24px; font: 400 clamp(3.2rem, 8vw, 5.2rem)/1 var(--serif); lett
 .command-results [data-command][hidden], .command-caption[hidden], .command-empty[hidden] { display: none; }
 .command-empty { margin: 20px 12px; color: #a7b7aa; font: 11px var(--mono); }
 .command-foot { display: flex; gap: 19px; padding: 12px 17px; border-top: 1px solid #34473b; color: #839887; font: 10px var(--mono); }
-.breadcrumbs { padding-top: 28px; color: var(--muted); font: 11px var(--mono); }
-.breadcrumbs a:hover { color: var(--accent); }
-.project-detail .intro { padding-top: 36px; }
-.project-detail h1 { font-size: clamp(2.7rem, 7vw, 4.5rem); overflow-wrap: anywhere; }
-.project-technologies { margin: 18px 0; color: var(--muted); font: 12px/1.6 var(--mono); }
-.project-detail .section p { font-size: 15px; line-height: 1.75; }
-.project-detail .section p:last-child { margin-bottom: 0; }
-.source-links { padding-left: 20px; font-size: 14px; line-height: 2; }
-.project-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 13px; line-height: 1.6; text-align: left; }
-.project-table th, .project-table td { padding: 8px 6px; border-bottom: 1px solid var(--rule); overflow-wrap: anywhere; }
-.project-detail .source-note { color: var(--muted); font-size: 12px; }
-.project-navigation { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; font-size: 13px; }
 @media (max-width: 650px) {
   .page { width: min(100% - 36px, 690px); }
   .site-header { min-height: 74px; margin-inline: -10px; padding-inline: 24px; }

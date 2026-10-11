@@ -40,7 +40,7 @@ if (commitLink && "IntersectionObserver" in window) {
       showLatestCommit();
     }
   }, { rootMargin: "150px" });
-  observer.observe(commitLink);
+  observer.observe(commitLink.parentElement);
 } else {
   window.addEventListener("load", showLatestCommit, { once: true });
 }
